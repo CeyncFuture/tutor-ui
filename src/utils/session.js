@@ -10,6 +10,7 @@ const isWhiteListedRoute = () => {
 };
 
 const redirectToLogin = () => {
+  //sessionStorage.setItem('usrtkn', 'ásadfadfsfsfs');
   window.history.replaceState(null, '', '/login');
 }
 
@@ -30,8 +31,11 @@ const session = (callback) => {
   }
 
   try {
-    const userdata = getUserData();
-    callback(userdata);
+    getUserData()
+      .then((response) => {
+        response.isLoggedIn = true;
+        callback(response);
+      });
   } catch {
     redirectToLogin();
   }

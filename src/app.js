@@ -1,10 +1,12 @@
 import React from 'react';
 import routes from '../src/routes';
+import Header from "./components/header";
+import {BrowserRouter} from "react-router-dom";
 
 function App() {
   return (
-    <>
-      <div className="header">Header</div>
+    <BrowserRouter >
+      <Header />
       <main
         id="mainContent"
         className="main-content"
@@ -14,7 +16,7 @@ function App() {
         {routes}
       </main>
       <div className="footer">Footer</div>
-    </>
+    </BrowserRouter>
   );
 }
 

@@ -1,0 +1,61 @@
+.header-container{
+  background-color: $white;
+  margin: 25px 0;
+  padding: 0 50px 0 50px;
+  height: 48px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+
+  .header-logo{
+    height: 37px;
+  }
+
+  .header-profile{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .my-account-menu{
+    position: absolute;
+    top: 80px;
+    right: 15px;
+    margin: 0;
+    padding: 0 20px 20px;
+    background: $white;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    text-align: left;
+    list-style-type: none;
+    z-index: 1;
+
+    h2 {
+      font-weight: 300;
+      font-size: 18px;
+      margin: 0;
+    }
+
+    li {
+      padding: 20px 0 0;
+      line-height: 130%;
+      font-weight: 300;
+      width: auto;
+
+      button{
+        position: relative;
+        background: none;
+        border: none;
+        text-decoration: none;
+
+        &:hover {
+          cursor: pointer;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

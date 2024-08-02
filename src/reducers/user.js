@@ -1,5 +1,5 @@
 import {createReducer} from '../utils/utils';
-import {UPDATE_PROFILE} from '../actions/constants/user';
+import {SIGN_OUT, UPDATE_PROFILE} from '../actions/constants/user';
 
 const user = {
   firstName: '',
@@ -16,6 +16,9 @@ const states = {
       .set('userRole', payload.userRole)
       .set('profilePicture', payload.profilePicture);
     return newState;
+  },
+  [SIGN_OUT]: () => {
+    return user;
   }
 };
 

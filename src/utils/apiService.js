@@ -20,11 +20,18 @@ const fetch = (url, options = {}) => {
     url,
     method,
     headers: requestHeaders,
-    body: JSON.stringify(payload)
+    data: JSON.stringify(payload)
   };
 
   return axios(requestData)
     .catch((error) => {
+     /* return {
+        firstName: 'Thilina',
+        lastName: 'Pahalagedara',
+        userRole: 'student',
+        profilePicture: 3,
+        tkn: 'sgfsgsgsgs'
+      };*/
       throw error;
     });
 };
