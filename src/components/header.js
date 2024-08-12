@@ -3,6 +3,7 @@ import {useSelector, useDispatch} from "react-redux";
 import {get} from 'lodash';
 import {useNavigate} from "react-router";
 import userActions from "../actions/user";
+import logo from "../assets/logo.png";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,7 +48,7 @@ const Header = () => {
 
   return (
     <div className="header-container">
-      <img className="header-logo" src="" alt="logo" onClick={() => isLoggedIn && navigate('/home')} />
+      <img className="header-logo" src={logo} alt="logo" onClick={() => isLoggedIn && navigate('/home')} />
       {isLoggedIn && <img
         className="header-profile"
         src={require(`../assets/profilePictures/${profilePicture}.png`)}

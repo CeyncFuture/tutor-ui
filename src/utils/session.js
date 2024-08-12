@@ -10,12 +10,11 @@ const isWhiteListedRoute = () => {
 };
 
 const redirectToLogin = () => {
-  //sessionStorage.setItem('usrtkn', 'ásadfadfsfsfs');
   window.history.replaceState(null, '', '/login');
 }
 
 const getUserData = () => {
-  return fetch('/api/userData');
+  return fetch('/userData');
 };
 
 const session = (callback) => {

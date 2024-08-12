@@ -1,7 +1,6 @@
 .header-container{
   background-color: $white;
-  margin: 25px 0;
-  padding: 0 50px 0 50px;
+  padding: 25px 50px 25px 50px;
   height: 48px;
   display: flex;
   flex-direction: row;
@@ -10,8 +9,9 @@
   justify-content: space-between;
   align-items: center;
 
+
   .header-logo{
-    height: 37px;
+    height: 80px;
   }
 
   .header-profile{

@@ -22,7 +22,9 @@ export default function Login() {
     dispatch(userActions.login({
       email: data.get('email'),
       password: data.get('password')
-    }));
+      },
+      navigate
+    ));
   };
 
   return (

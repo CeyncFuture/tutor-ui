@@ -1,5 +1,5 @@
 import {get} from 'lodash';
-import {SIGN_OUT, UPDATE_PROFILE, UPDATE_PROFILE_ERROR} from "./constants/user";
+import {SIGN_OUT, UPDATE_PROFILE, UPDATE_PROFILE_ERROR, VERIFY_PROFILE} from "./constants/user";
 import fetch from '../utils/apiService';
 
 const userActions = {
@@ -20,35 +20,65 @@ const userActions = {
       payload: error
     };
   },
-  register(payload){
+  verifyUserProfile(){
+    return {
+      type: VERIFY_PROFILE
+    }
+  },
+  register(payload, navigate){
     return () => {
-      return fetch('/api/register', {
+      return fetch('/auth/register', {
         method: 'POST',
         body: payload
       })
-        .then((response) => sessionStorage.setItem('usrtkn', get(response,'tkn')))
-        .catch((error) => console.log(error));
+        .then((response) => {
+          if (response.data) {
+            navigate('/login')
+          } else {
+            console.log(response.error);
+          }
+        });
     }
   },
-  login(payload){
-  return () => {
-    return fetch('/api/login', {
+  login(payload, navigate){
+  return (dispatch) => {
+    return fetch('/auth/login', {
       method: 'POST',
       body: payload
     })
-      .then((response) => sessionStorage.setItem('usrtkn', get(response,'tkn')))
-      .catch((error) => console.log(error));
+      .then((response) => {
+        if (response.data){
+          sessionStorage.setItem('usrtkn', get(response, 'data.payload.access_token'));
+          dispatch(userActions.updateUserProfileSuccess(get(response, 'data.payload.user',  {
+            firstName: '',
+            lastName: '',
+            userRole: '',
+            profilePicture: 1,
+            isLoggedIn:true,
+            isVerified: false
+          })));
+          navigate('/')
+        } else {
+          console.log(response.error);
+        }
+      });
   }
 },
   updateUserProfile(payload) {
     return (dispatch, getState) => {
       //using getState: can access current redux state
-      return fetch('/api/userData', {
+      return fetch('/userData', {
         method: 'PUT',
         body: payload
       })
-        .then((response) => dispatch(userActions.updateUserProfileSuccess(response)))
-        .catch((error) =>  dispatch(userActions.updateUserProfileFailure(error)));
+        .then((response) => {
+          if (response.data) {
+            dispatch(userActions.updateUserProfileSuccess(response));
+          } else {
+            dispatch(userActions.updateUserProfileFailure(response.error));
+          }
+        }
+      );
     }
   }
 };

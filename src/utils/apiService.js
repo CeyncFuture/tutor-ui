@@ -1,13 +1,16 @@
 import axios from 'axios';
+import {get} from "lodash";
+import config from "../config";
 
 const fetch = (url, options = {}) => {
   if (!url && typeof url !== 'string') {
     return;
   }
-
+  url = get(config,'API_URL')+url;
   const {method = 'GET', body, headers = {}} = options;
+  const token = sessionStorage.getItem('usrtkn');
   const requestHeaders = Object.assign({}, {
-    Authorization: sessionStorage.getItem('usrtkn'),
+    Authorization: `Bearer ${token}`,
     'Content-Type': 'application/json'
   }, headers);
 
@@ -24,15 +27,11 @@ const fetch = (url, options = {}) => {
   };
 
   return axios(requestData)
+    .then((response)=>{
+      return { data: response.data, error: null };
+    })
     .catch((error) => {
-     /* return {
-        firstName: 'Thilina',
-        lastName: 'Pahalagedara',
-        userRole: 'student',
-        profilePicture: 3,
-        tkn: 'sgfsgsgsgs'
-      };*/
-      throw error;
+      return { data: null, error: error };
     });
 };
 

@@ -1,0 +1,38 @@
+.error-page-container{
+  padding-top: 5vh;
+  text-align: center;
+  background-color: $white;
+  .error-image{
+    z-index:2;
+    height: 90vh;
+    top: 0;
+  }
+}
+.progress-bar{
+  display: flex;
+  height: 70vh;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  svg{
+    width:8vh
+  }
+}
+.otp-input-container{
+  height: 90vh;
+  padding-top:15vh ;
+  .otp-input-form{
+    margin: auto;
+    background-color: $white;
+    max-width: 40vw;
+    min-width: 300px;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  }
+}
