@@ -22,7 +22,7 @@ const Header = () => {
 
   const handleAccountSettings = () => {
     setIsOpen(false);
-    navigate('/account');
+    navigate('/account', { state: { isEditDisabled: false } });
   }
 
   const renderAccountList = () => {
