@@ -3,6 +3,8 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import DropDownSelector from "./DropDownSelector";
+import {interests} from "../utils/constants";
 
 export default function EditProfile({setIsEdit}) {
     return (
@@ -56,6 +58,12 @@ export default function EditProfile({setIsEdit}) {
                         type="password"
                         id="password"
                         autoComplete="new-password"
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <DropDownSelector
+                        label="Interests"
+                        items={interests}
                     />
                 </Grid>
             </Grid>
