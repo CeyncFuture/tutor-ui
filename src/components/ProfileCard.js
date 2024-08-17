@@ -26,7 +26,13 @@ export default function ProfileCard(props) {
             <Typography component="h1" variant="h5" sx={{mt: 3}}>
                 {`${data?.firstName} ${data?.lastName}`}
             </Typography>
-            <Stack sx={{mt: 3}} direction="row" spacing={1}>
+            <Typography sx={{color: 'rgb(80, 87, 89)', fontSize: '14px'}}>
+                {data?.email}
+            </Typography>
+            <Typography sx={{color: 'rgb(80, 87, 89)', fontSize: '14px'}}>
+                {data?.phoneNumber}
+            </Typography>
+            <Stack sx={{mt: 3}} direction="row" flexWrap="wrap" spacing={1}>
                 {
                     data?.interestAreas?.map((area, index) => (
                         <Chip key={index} label={area} color="primary"/>

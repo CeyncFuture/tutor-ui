@@ -5,81 +5,91 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import DropDownSelector from "./DropDownSelector";
 import {interests} from "../utils/constants";
+import {useDispatch} from "react-redux";
+import userActions from "../actions/user";
+import {useState} from "react";
 
 export default function EditProfile({setIsEdit}) {
+    const dispatch = useDispatch();
+    const [formData, setFormData] = useState({});
+
+    const onChange = (e) => {
+        setFormData({...formData, [e.target.name]: e.target.value});
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        dispatch(userActions.updateUserProfile(formData));
+    };
+
     return (
-        <Box
-            component="form"
-            noValidate
-            sx={{
-                mt: 3,
-                bgcolor: 'white',
-                padding: 3
-            }}
-        >
+        <Box sx={{mt: 3, bgcolor: 'white', padding: 3}}>
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                     <TextField
-                        autoComplete="given-name"
+                        label="First Name"
                         name="firstName"
+                        id="firstName"
                         required
                         fullWidth
-                        id="firstName"
-                        label="First Name"
                         autoFocus
+                        onChange={onChange}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <TextField
-                        required
-                        fullWidth
-                        id="lastName"
                         label="Last Name"
                         name="lastName"
-                        autoComplete="family-name"
+                        id="lastName"
+                        required
+                        fullWidth
+                        onChange={onChange}
                     />
                 </Grid>
                 <Grid item xs={12}>
                     <TextField
-                        required
-                        fullWidth
-                        id="email"
                         label="Email Address"
                         name="email"
-                        autoComplete="email"
+                        id="email"
+                        required
+                        fullWidth
+                        onChange={onChange}
                     />
                 </Grid>
                 <Grid item xs={12}>
                     <TextField
+                        label="Phone Number"
+                        name="phoneNumber"
+                        id="phoneNumber"
                         required
                         fullWidth
-                        name="password"
-                        label="Password"
+                        onChange={onChange}
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
                         type="password"
+                        label="Password"
+                        name="password"
                         id="password"
-                        autoComplete="new-password"
+                        required
+                        fullWidth
+                        onChange={onChange}
                     />
                 </Grid>
                 <Grid item xs={12}>
                     <DropDownSelector
                         label="Interests"
+                        name="interests"
                         items={interests}
+                        onChange={onChange}
                     />
                 </Grid>
             </Grid>
-            <Button
-                fullWidth
-                variant="contained"
-                sx={{mt: 3, mb: 2}}
-            >
+            <Button fullWidth variant="contained" sx={{mt: 3, mb: 2}} onClick={handleSubmit}>
                 Save
             </Button>
-            <Button
-                fullWidth
-                variant="contained"
-                sx={{mb: 2}}
-                onClick={() => setIsEdit(false)}
-            >
+            <Button fullWidth variant="contained" sx={{mb: 2}} onClick={() => setIsEdit(false)}>
                 Cancel
             </Button>
         </Box>
