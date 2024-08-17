@@ -1,11 +1,11 @@
 import {createReducer} from '../utils/utils';
-import {SIGN_OUT, UPDATE_PROFILE, VERIFY_PROFILE} from '../actions/constants/user';
+import {SIGN_OUT, UPDATE_PROFILE, UPDATE_USER_ROLE, VERIFY_PROFILE} from '../actions/constants/user';
 
 const user = {
-  firstName: '',
-  lastName: '',
-  userRole: '',
-  profilePicture: 1
+  first_name: '',
+  last_name: '',
+  user_role: '',
+  profile_picture: 1
 };
 
 const states = {
@@ -16,7 +16,10 @@ const states = {
     return user;
   },
   [VERIFY_PROFILE]: (state) => {
-    return { ...state, isVerified: true }
+    return { ...state, is_verified: true }
+  },
+  [UPDATE_USER_ROLE]: (state, payload) => {
+    return { ...state, user_role: payload }
   }
 };
 

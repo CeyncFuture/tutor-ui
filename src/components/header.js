@@ -10,8 +10,9 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const profilePicture = get(user, 'profilePicture', 1);
-  const isLoggedIn = get(user,'isLoggedIn', false);
+  let profile_picture = get(user, 'profile_picture', 1);
+  profile_picture = profile_picture === null ? 1 : profile_picture;
+  const is_logged_in = get(user,'is_logged_in', false);
 
   const handleSignOut = () => {
     setIsOpen(false);
@@ -48,10 +49,10 @@ const Header = () => {
 
   return (
     <div className="header-container">
-      <img className="header-logo" src={logo} alt="logo" onClick={() => isLoggedIn && navigate('/home')} />
-      {isLoggedIn && <img
+      <img className="header-logo" src={logo} alt="logo" onClick={() => is_logged_in && navigate('/home')} />
+      {is_logged_in && <img
         className="header-profile"
-        src={require(`../assets/profilePictures/${profilePicture}.png`)}
+        src={require(`../assets/profilePictures/${profile_picture}.png`)}
         alt="profile"
         onClick={() => setIsOpen(!isOpen)}
       />}
