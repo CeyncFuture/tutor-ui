@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Timer from "./timer";
@@ -7,7 +7,7 @@ const  OTPInput = ({requestOTP, verifyOTP}) => {
   const [number, setNumber] = useState('');
   const savedTime = sessionStorage.getItem('timer');
   const [isValidSavedTimeAvailable, setIsValidSavedTimeAvailable] = useState(savedTime !== 0 || true);
-  const isOTPSent = sessionStorage.getItem('isOTPSent')
+  const isOTPSent = JSON.parse(sessionStorage.getItem('isOTPSent'));
 
   const handleChange = (event) => {
     const value = event.target.value;
@@ -18,10 +18,10 @@ const  OTPInput = ({requestOTP, verifyOTP}) => {
 
   const handleTimerCallback = () => {
     setIsValidSavedTimeAvailable(false);
-    sessionStorage.setItem('isOTPSent', false);
+    sessionStorage.setItem('isOTPSent', JSON.stringify(false));
   }
 
-  const otpInputWithTimmer = () => {
+  const otpInputWithTimer = () => {
     return (
       <>
         <Timer callback={handleTimerCallback}/>
@@ -36,14 +36,13 @@ const  OTPInput = ({requestOTP, verifyOTP}) => {
       </>
     )
   }
-  console.log( isOTPSent, isValidSavedTimeAvailable);
 
   return (
     <div className="otp-input-container">
       <div className="otp-input-form">
         <h2>Please verify your email</h2>
         {
-          isOTPSent && isValidSavedTimeAvailable ? otpInputWithTimmer()
+          (isOTPSent && isValidSavedTimeAvailable) ? otpInputWithTimer()
             : (
               <Button variant="contained" color="primary" onClick={requestOTP}>
                 Request a new pin

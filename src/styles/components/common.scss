@@ -36,3 +36,39 @@
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   }
 }
+
+.role-selection-container{
+  height: 90vh;
+  padding-top:15vh ;
+  .role-selection-form{
+    margin: auto;
+    background-color: $white;
+    max-width: 30vw;
+    min-width: 300px;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    button{
+      width: 200px;
+      :hover{
+        background-color: $white;
+      }
+    }
+  }
+}
+
+.question-form-container{
+  padding: 5vh;
+  max-width: 700px;
+  margin: auto;
+  .question-form-file-upload{
+    padding: 10px;
+    background-color: $off-white;
+    width: 100%;
+  }
+}

@@ -1,5 +1,5 @@
 import {get} from 'lodash';
-import {SIGN_OUT, UPDATE_PROFILE, UPDATE_PROFILE_ERROR, VERIFY_PROFILE} from "./constants/user";
+import {SIGN_OUT, UPDATE_PROFILE, UPDATE_PROFILE_ERROR, VERIFY_PROFILE, UPDATE_USER_ROLE} from "./constants/user";
 import fetch from '../utils/apiService';
 
 const userActions = {
@@ -23,6 +23,12 @@ const userActions = {
   verifyUserProfile(){
     return {
       type: VERIFY_PROFILE
+    }
+  },
+  updateUserRole(role){
+    return {
+      type: UPDATE_USER_ROLE,
+      payload: role
     }
   },
   register(payload, navigate){
@@ -50,12 +56,12 @@ const userActions = {
         if (response.data){
           sessionStorage.setItem('usrtkn', get(response, 'data.payload.access_token'));
           dispatch(userActions.updateUserProfileSuccess(get(response, 'data.payload.user',  {
-            firstName: '',
-            lastName: '',
-            userRole: '',
-            profilePicture: 1,
-            isLoggedIn:true,
-            isVerified: false
+            first_name: '',
+            last_name: '',
+            user_role: '',
+            profile_picture: 1,
+            is_logged_in:true,
+            is_verified: false
           })));
           navigate('/')
         } else {
