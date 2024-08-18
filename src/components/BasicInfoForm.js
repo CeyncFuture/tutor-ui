@@ -28,16 +28,6 @@ const BasicInfoForm = ({setStep, questionnaire, setQuestionnaire}) => {
             <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <TextField
-                        label="Full Name"
-                        name="full_name"
-                        id="fullName"
-                        value={answers.full_name ? answers.full_name : ''}
-                        fullWidth
-                        onChange={handleChange}
-                    />
-                </Grid>
-                <Grid item xs={12}>
-                    <TextField
                         label="Address"
                         name="address"
                         id="address"
@@ -65,16 +55,6 @@ const BasicInfoForm = ({setStep, questionnaire, setQuestionnaire}) => {
                             }
                         </Select>
                     </FormControl>
-                </Grid>
-                <Grid item xs={12}>
-                    <TextField
-                        label="Email Address"
-                        name="email"
-                        id="email"
-                        value={answers.email ? answers.email : ''}
-                        fullWidth
-                        onChange={handleChange}
-                    />
                 </Grid>
                 <Grid item xs={12}>
                     <TextField

@@ -1,5 +1,5 @@
 import {get} from 'lodash';
-import {SIGN_OUT, UPDATE_PROFILE, UPDATE_PROFILE_ERROR, VERIFY_PROFILE, UPDATE_USER_ROLE} from "./constants/user";
+import {SIGN_OUT, UPDATE_PROFILE, UPDATE_PROFILE_ERROR, VERIFY_PROFILE} from "./constants/user";
 import fetch from '../utils/apiService';
 
 const userActions = {
@@ -23,12 +23,6 @@ const userActions = {
   verifyUserProfile(){
     return {
       type: VERIFY_PROFILE
-    }
-  },
-  updateUserRole(role){
-    return {
-      type: UPDATE_USER_ROLE,
-      payload: role
     }
   },
   register(payload, navigate){
@@ -71,10 +65,10 @@ const userActions = {
   }
 },
   updateUserProfile(payload) {
-    return (dispatch, getState) => {
-      //using getState: can access current redux state
-      return fetch('/userData', {
-        method: 'PUT',
+    return (dispatch) => {
+
+      return fetch('/user', {
+        method: 'POST',
         body: payload
       })
         .then((response) => {
@@ -85,6 +79,20 @@ const userActions = {
           }
         }
       );
+    }
+  },
+  getUserById(userId) {
+    return (dispatch) => {
+
+      return fetch(`/user/${userId}`)
+        .then((response) => {
+            if (response.data) {
+              dispatch(userActions.updateUserProfileSuccess(response));
+            } else {
+              dispatch(userActions.updateUserProfileFailure(response.error));
+            }
+          }
+        );
     }
   }
 };

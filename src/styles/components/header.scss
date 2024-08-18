@@ -58,4 +58,15 @@
       }
     }
   }
+  .signOut-button{
+    position: relative;
+    background: none;
+    border: none;
+    text-decoration: none;
+
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
 }

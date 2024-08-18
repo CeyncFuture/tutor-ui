@@ -4,7 +4,7 @@ import {get} from 'lodash';
 
 
 const isWhiteListedRoute = () => {
-  const list = get(config,'WHITELISTED_ROUTES',['login', 'register']);
+  const list = get(config,'WHITELISTED_ROUTES',['login', 'register', 'tutor']);
   const route = window.location.pathname.split('/')[1];
   return route && list.indexOf(route) > -1;
 };

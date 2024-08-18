@@ -9,6 +9,8 @@ import {
     FormControlLabel,
     Radio
 } from '@mui/material';
+import DropDownSelector from "./DropDownSelector";
+import {interests} from "../utils/constants";
 
 const TutoringInfoForm = ({setStep, questionnaire, setQuestionnaire}) => {
     const [answers, setAnswers] = useState(questionnaire);
@@ -51,7 +53,14 @@ const TutoringInfoForm = ({setStep, questionnaire, setQuestionnaire}) => {
                         onChange={handleChange}
                     />
                 </Grid>
-                subject form here
+                <Grid item xs={12}>
+                    <DropDownSelector
+                      label="Interests"
+                      name="interests"
+                      items={interests}
+                      onChange={handleChange}
+                    />
+                </Grid>
             </Grid>
             <Button
                 fullWidth

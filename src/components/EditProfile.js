@@ -9,17 +9,17 @@ import {useDispatch} from "react-redux";
 import userActions from "../actions/user";
 import {useState} from "react";
 
-export default function EditProfile({setIsEdit}) {
+export default function EditProfile({setIsEdit, user}) {
     const dispatch = useDispatch();
-    const [formData, setFormData] = useState({});
+    const [userData, setUserData] = useState(user);
 
     const onChange = (e) => {
-        setFormData({...formData, [e.target.name]: e.target.value});
+        setUserData({...userData, [e.target.name]: e.target.value});
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch(userActions.updateUserProfile(formData));
+        dispatch(userActions.updateUserProfile(userData));
     };
 
     return (
@@ -28,8 +28,9 @@ export default function EditProfile({setIsEdit}) {
                 <Grid item xs={12} sm={6}>
                     <TextField
                         label="First Name"
-                        name="firstName"
+                        name="first_name"
                         id="firstName"
+                        value={userData.first_name}
                         required
                         fullWidth
                         autoFocus
@@ -39,10 +40,12 @@ export default function EditProfile({setIsEdit}) {
                 <Grid item xs={12} sm={6}>
                     <TextField
                         label="Last Name"
-                        name="lastName"
+                        name="last_name"
                         id="lastName"
+                        value={userData.last_name}
                         required
                         fullWidth
+                        autoFocus
                         onChange={onChange}
                     />
                 </Grid>
@@ -51,22 +54,26 @@ export default function EditProfile({setIsEdit}) {
                         label="Email Address"
                         name="email"
                         id="email"
+                        value={userData.email}
                         required
                         fullWidth
+                        autoFocus
                         onChange={onChange}
                     />
                 </Grid>
                 <Grid item xs={12}>
                     <TextField
                         label="Phone Number"
-                        name="phoneNumber"
+                        name="phone_number"
                         id="phoneNumber"
+                        value={userData.phone_number}
                         required
                         fullWidth
+                        autoFocus
                         onChange={onChange}
                     />
                 </Grid>
-                <Grid item xs={12}>
+                {/*<Grid item xs={12}>
                     <TextField
                         type="password"
                         label="Password"
@@ -76,11 +83,12 @@ export default function EditProfile({setIsEdit}) {
                         fullWidth
                         onChange={onChange}
                     />
-                </Grid>
+                </Grid>*/}
                 <Grid item xs={12}>
                     <DropDownSelector
                         label="Interests"
                         name="interests"
+                        interests={userData.interests}
                         items={interests}
                         onChange={onChange}
                     />

@@ -13,6 +13,7 @@ const Header = () => {
   let profile_picture = get(user, 'profile_picture', 1);
   profile_picture = profile_picture === null ? 1 : profile_picture;
   const is_logged_in = get(user,'is_logged_in', false);
+  const userRole = 'tutor' || get(user,'user_role', 'all');
 
   const handleSignOut = () => {
     setIsOpen(false);
@@ -36,6 +37,7 @@ const Header = () => {
             <h2>Account settings</h2>
           </button>
         </li>
+
         <li>
           <button
             onClick={handleSignOut}
@@ -50,12 +52,20 @@ const Header = () => {
   return (
     <div className="header-container">
       <img className="header-logo" src={logo} alt="logo" onClick={() => is_logged_in && navigate('/home')} />
-      {is_logged_in && <img
+      {is_logged_in && userRole !== 'tutor' && <img
         className="header-profile"
         src={require(`../assets/profilePictures/${profile_picture}.png`)}
         alt="profile"
         onClick={() => setIsOpen(!isOpen)}
       />}
+      {is_logged_in && userRole === 'tutor' &&
+      <button
+        className="signOut-button"
+        onClick={handleSignOut}
+      >
+        <h2>Sign out</h2>
+      </button>
+      }
       {isOpen && renderAccountList()}
     </div>
   );
