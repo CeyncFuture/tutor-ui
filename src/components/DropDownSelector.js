@@ -9,8 +9,8 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Chip from '@mui/material/Chip';
 
-export default function DropDownSelector({label, name, items, onChange}) {
-    const [values, setValues] = React.useState([]);
+export default function DropDownSelector({label, name, items, onChange, interests = []}) {
+    const [values, setValues] = React.useState(interests);
 
     useEffect(() => {
         onChange({
@@ -56,7 +56,7 @@ export default function DropDownSelector({label, name, items, onChange}) {
             <Stack direction="row" spacing={1} flexWrap='wrap' sx={{mb: 2}}>
                 {
                     values?.map((item, index) => (
-                        <Chip key={index} label={item} onDelete={() => handleDelete(item)}/>
+                        <Chip key={index} sx={{marginBottom: '5px'}} label={item} onDelete={() => handleDelete(item)}/>
                     ))
                 }
             </Stack>

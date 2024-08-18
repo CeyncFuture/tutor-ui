@@ -4,6 +4,7 @@ import {get} from 'lodash';
 import EmailVerification from "./emailVerification";
 import RoleSelectionModal from "./roleSelectionModal";
 import QuestionForm from "./questionForm";
+import Profile from "./Profile";
 
 const Home = () => {
   const user = useSelector((state) => state.user);
@@ -27,7 +28,9 @@ const Home = () => {
     );
   } else {
     return (
-      <h1>home</h1>
+      <Profile
+        isEditable={true}
+      />
     )
   }
 
