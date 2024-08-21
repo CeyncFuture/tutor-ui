@@ -36,7 +36,7 @@ const OtherInfoForm = ({setStep, questionnaire, setQuestionnaire}) => {
                     <FormLabel>Do you own a smartphone, tablet, computer, or notebook?</FormLabel>
                     <RadioGroup
                         name="device"
-                        value={answers.device ? answers.device : devices.MOBILE.key}
+                        value={answers.device}
                         onChange={handleChange}
                     >
                         {
@@ -55,7 +55,7 @@ const OtherInfoForm = ({setStep, questionnaire, setQuestionnaire}) => {
                     <FormLabel>Today, which of these options best describes your current situation?</FormLabel>
                     <RadioGroup
                         name="employment"
-                        value={answers.employment ? answers.employment : employments.HIGH_SCHOOL_STUDENT.key}
+                        value={answers.employment}
                         onChange={handleChange}
                     >
                         {

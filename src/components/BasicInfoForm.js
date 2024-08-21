@@ -44,7 +44,7 @@ const BasicInfoForm = ({setStep, questionnaire, setQuestionnaire}) => {
                             name="country"
                             id="country"
                             labelId="country-label"
-                            value={answers.country ? answers.country : countries.SL.key}
+                            value={answers.country}
                             onChange={handleChange}
                             variant="outlined"
                         >
