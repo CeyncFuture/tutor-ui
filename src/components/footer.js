@@ -1,42 +1,58 @@
-import React from "react";
-import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
-import { blueGrey, pink, red } from "@mui/material/colors";
 
+import React from 'react';
+import { Box, Container, Grid, Link, Typography, IconButton } from '@mui/material';
+import { Facebook,WhatsApp,Email } from '@mui/icons-material';
 
-const footer = () => {
-    return (
-        <div className="footer-container"> 
-
-           <div className="footer-flax">
-            <div class="item auto">
-            <a href="://https://www.facebook.com/">
-            <FacebookRoundedIcon  fontSize="large"/> 
-            </a>
-            </div>
-            <div class="item auto">
-            <a href="https://whatsapp.com">
-            <WhatsAppIcon fontSize="large"sx={{color: blueGrey[500]}}/> 
-            </a>
-            </div>
-            <div class="item auto">
-            <a href="https://gmail.com">
-            <EmailRoundedIcon fontSize="large"/>
-            </a>
-            </div>
-
-            </div>
-
-
+const Footer = () => {
+  return (
+    <Box
+      component="footer"
+      sx={{
+        // bgcolor: '', // Light green background color
+        py: 4,
+      }}
+    >
+      <Container maxWidth="lg">
+        <Grid container justifyContent="center" spacing={4}>
           
-            
-           
-            <p>&copy;2024 <a href="https://ceyncfuture.live">ceyncfuture.</a>All rights reserved</p>
+        </Grid>
+        <Grid container justifyContent="center" spacing={2} sx={{ mt: 2 }}>
+          <Grid item>
+            <Link href="#" variant="body1" color="textSecondary">
+            CeyncFuture
+            </Link>
+          </Grid>
+          
+        </Grid>
+        <Grid container justifyContent="center" spacing={2} sx={{ mt: 2 }}>
+          <Grid item>
+            <IconButton href="#" color="primary">
+              <Facebook />
+            </IconButton>
+          </Grid>
+          <Grid item>
+            <IconButton href="#" color="primary">
+              <WhatsApp />
+            </IconButton>
+          </Grid>
+          <Grid item>
+            <IconButton href="#" color="primary">
+              <Email />
+            </IconButton>
+          </Grid>
+ 
+        </Grid>
+        <Typography
+          variant="body2"
+          color="textSecondary"
+          align="center"
+          sx={{ mt: 2 }}
+        >
+          © 2024. All rights reserved.
+        </Typography>
+      </Container>
+    </Box>
+  );
+};
 
-        </div>
-        
-
-    );
-}
-export default footer;
+export default Footer;
