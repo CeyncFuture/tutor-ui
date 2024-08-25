@@ -17,7 +17,6 @@ function App() {
         {routes}
       </main>
       <Footer />
-      {/* <div className="footer">Footer</div> */}
     </BrowserRouter>
   );
 }
