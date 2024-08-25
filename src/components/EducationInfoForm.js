@@ -35,7 +35,7 @@ const EducationInfoForm = ({setStep, questionnaire, setQuestionnaire}) => {
                     <FormLabel>What is your highest education status ( Completed / Currently doing) </FormLabel>
                     <RadioGroup
                         name="high_edu_qualification"
-                        value={answers.high_edu_qualification ? answers.high_edu_qualification : educationQualifications.HIGHER_EDUCATION.key}
+                        value={answers.high_edu_qualification}
                         onChange={handleChange}
                     >
                         {
@@ -74,7 +74,7 @@ const EducationInfoForm = ({setStep, questionnaire, setQuestionnaire}) => {
                     <FormLabel>Send Your university? (if applicable) </FormLabel>
                     <RadioGroup
                         name="is_send_uni"
-                        value={answers.is_send_uni ? answers.is_send_uni : options.YES.key}
+                        value={answers.is_send_uni}
                         onChange={handleChange}
                     >
                         {

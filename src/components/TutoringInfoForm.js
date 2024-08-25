@@ -36,7 +36,7 @@ const TutoringInfoForm = ({setStep, questionnaire, setQuestionnaire}) => {
                     <FormLabel>Do you have Previous Teaching/Tutoring Experience?</FormLabel>
                     <RadioGroup
                         name="prev_experience"
-                        value={answers.prev_experience ? answers.prev_experience : "yes"}
+                        value={answers.prev_experience}
                         onChange={handleChange}
                     >
                         <FormControlLabel value="yes" control={<Radio/>} label="Yes"/>
