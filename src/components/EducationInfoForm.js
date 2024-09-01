@@ -34,8 +34,8 @@ const EducationInfoForm = ({setStep, questionnaire, setQuestionnaire}) => {
                 <Grid item xs={12}>
                     <FormLabel>What is your highest education status ( Completed / Currently doing) </FormLabel>
                     <RadioGroup
-                        name="high_edu_qualification"
-                        value={answers.high_edu_qualification}
+                        name="highest_education_qualification"
+                        value={answers.highest_education_qualification}
                         onChange={handleChange}
                     >
                         {
@@ -71,10 +71,11 @@ const EducationInfoForm = ({setStep, questionnaire, setQuestionnaire}) => {
                     />
                 </Grid>
                 <Grid item xs={12}>
+                    {/* TODO: Changed proper label */}
                     <FormLabel>Send Your university? (if applicable) </FormLabel>
                     <RadioGroup
-                        name="is_send_uni"
-                        value={answers.is_send_uni}
+                        name="university"
+                        value={answers.university}
                         onChange={handleChange}
                     >
                         {

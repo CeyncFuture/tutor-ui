@@ -86,9 +86,9 @@ const OtherInfoForm = ({setStep, questionnaire, setQuestionnaire}) => {
                 <Grid item xs={12}>
                     <TextField
                         label="What are your expectations for monthly online earnings ($)?"
-                        name="exp_earnings"
+                        name="expected_earnings"
                         id="expEarnings"
-                        value={answers.exp_earnings ? answers.exp_earnings : ""}
+                        value={answers.expected_earnings ? answers.expected_earnings : ""}
                         fullWidth
                         InputProps={{
                             startAdornment: <InputAdornment position="start">$</InputAdornment>,
