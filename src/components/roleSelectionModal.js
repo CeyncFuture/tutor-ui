@@ -15,7 +15,7 @@ const  RoleSelectionModal = () => {
 
   const handleCloseModal = (questionnaire) => {
     setIsModalOpen(false);
-    updateUser({...questionnaire, user_role: 'tutor'})
+    updateUser({...questionnaire, role: 'tutor'})
   };
 
   const updateUser = (payload) => {
@@ -26,7 +26,7 @@ const  RoleSelectionModal = () => {
     <div className="role-selection-container">
       <div className="role-selection-form">
         <h2>Register as... </h2>
-        <Button variant="contained" color="primary" onClick={()=>{updateUser({user_role: 'student'})}}>
+        <Button variant="contained" color="primary" onClick={()=>{updateUser({role: 'student'})}}>
           Student
         </Button>
         <Button variant="contained" color="primary" onClick={handleOpenModal}>
