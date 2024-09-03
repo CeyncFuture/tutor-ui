@@ -96,6 +96,7 @@ export const devices = {
         name: "Notebook/Laptop",
     },
 }
+
 export const interests = [
     "Software Development",
     "Quality Assurance",
@@ -104,4 +105,61 @@ export const interests = [
     "Chemistry",
     "Physics",
     "Biology"
+]
+
+export const questions = [
+    {
+        id: 1,
+        name: "Who is the president of sri lanka?",
+        whatsappNo: "0776213875",
+        attachment: {
+            fileName: "question-01.pdf",
+            filePath: "https://icseindia.org/document/sample.pdf"
+        }
+    },
+    {
+        id: 2,
+        name: "Who is the president of sri lanka?",
+        whatsappNo: "0771234567",
+        attachment: {
+            fileName: "question-02.pdf",
+            filePath: "https://icseindia.org/document/sample.pdf"
+        }
+    },
+    {
+        id: 3,
+        name: "Who is the president of sri lanka?",
+        whatsappNo: "0777654321",
+        attachment: {
+            fileName: "question-03.pdf",
+            filePath: "https://icseindia.org/document/sample.pdf"
+        }
+    }
+]
+
+export const tutors = [
+    {
+        id: 1,
+        firstName: "Charith",
+        lastName: "Wijebandara",
+        email: "charith@gmail.com",
+        phoneNumber: "0776213875",
+        interestAreas: [
+            "Chemistry",
+            "Physics",
+            "Combined Maths"
+        ]
+    },
+    {
+        id: 2,
+        firstName: "Thilina",
+        lastName: "Pahalagedara",
+        email: "thilina@gmail.com",
+        phoneNumber: "0711797719",
+        interestAreas: [
+            "Software Development",
+            "Machine Learning",
+            "IOT"
+        ]
+    }
 ]
