@@ -77,10 +77,10 @@ const QuestionForm = () => {
           fullWidth
           sx={{ mb: 2 }}
         />
-        <div className="question-form-file-upload">
-          <label htmlFor="file-upload">
+        <div className="question-form-attachments">
+          <label htmlFor="attachments">
             <Input
-              id="file-upload"
+              id="attachments"
               type="file"
               multiple
               onChange={handleFileChange}
