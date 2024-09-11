@@ -8,31 +8,43 @@ import Profile from "./Profile";
 
 const Home = () => {
   const user = useSelector((state) => state.user);
-  const is_verified = get(user,'is_verified', false);
-  const user_role = get(user,'user_role', 'all');
+
+  const renderContent = () => {
+    const is_verified = get(user,'is_verified', false);
+    const role = get(user,'role', 'all');
 
 
-  if (!is_verified){
-    return (
-    <EmailVerification/>
-    );
-  }
-  if (user_role === 'all') {
-    return (
+    if (!is_verified){
+      return (
+        <EmailVerification/>
+      );
+    }
+    if (role === 'all') {
+      return (
         <RoleSelectionModal/>
       );
+    }
+    if (role === 'student') {
+      return (
+        <QuestionForm/>
+      );
+    } else {
+      return (
+        <Profile
+          isEditable={true}
+        />
+      )
+    }
   }
-  if (user_role === 'student') {
-    return (
-      <QuestionForm/>
-    );
-  } else {
-    return (
-      <Profile
-        isEditable={true}
-      />
-    )
-  }
+
+  return (
+    <div className="home-container">
+      <div className="bg"/>
+      <div style={{position: 'relative',zIndex: '2'}}>
+        {renderContent()}
+      </div>
+    </div>
+  )
 
 }
 

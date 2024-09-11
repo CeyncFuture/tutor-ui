@@ -10,7 +10,7 @@ const fetch = (url, options = {}) => {
   const {method = 'GET', body, headers = {}} = options;
   const token = sessionStorage.getItem('usrtkn');
   const requestHeaders = Object.assign({}, {
-    Authorization: `Bearer ${token}`,
+    authorization: `Bearer ${token}`,
     'Content-Type': 'application/json'
   }, headers);
 

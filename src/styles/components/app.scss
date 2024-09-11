@@ -6,3 +6,20 @@
   height: 10vh;
   background-color: $light-grey;
 }
+.home-container{
+  position: relative;
+  margin: auto;
+  .bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 90vh;
+    background-image: url('../../../src/assets/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(2px);
+    background-color: rgba(0,0,0, 0.4)
+  }
+}

@@ -4,7 +4,7 @@ import {SIGN_OUT, UPDATE_PROFILE, VERIFY_PROFILE} from '../actions/constants/use
 const user = {
   first_name: '',
   last_name: '',
-  user_role: '',
+  role: '',
   profile_picture: 1
 };
 

@@ -52,7 +52,7 @@ const userActions = {
           dispatch(userActions.updateUserProfileSuccess(get(response, 'data.payload.user',  {
             first_name: '',
             last_name: '',
-            user_role: '',
+            role: '',
             profile_picture: 1,
             is_logged_in:true,
             is_verified: false
@@ -73,7 +73,7 @@ const userActions = {
       })
         .then((response) => {
           if (response.data) {
-            dispatch(userActions.updateUserProfileSuccess(response));
+            dispatch(userActions.updateUserProfileSuccess(get(response, 'data.payload')));
           } else {
             dispatch(userActions.updateUserProfileFailure(response.error));
           }

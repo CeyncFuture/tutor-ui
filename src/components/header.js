@@ -13,7 +13,7 @@ const Header = () => {
   let profile_picture = get(user, 'profile_picture', 1);
   profile_picture = profile_picture === null ? 1 : profile_picture;
   const is_logged_in = get(user,'is_logged_in', false);
-  const userRole = 'tutor' || get(user,'user_role', 'all');
+  const userRole = 'tutor' || get(user,'role', 'all');
 
   const handleSignOut = () => {
     setIsOpen(false);
