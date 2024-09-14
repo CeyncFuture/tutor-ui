@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 const Timer = ({callback}) => {
   const getInitialTime = () => {
     const savedTime = sessionStorage.getItem('timer');
-    return savedTime && savedTime !== 0 ? parseInt(savedTime, 10) : 1800;
+    return savedTime && savedTime !== 0 ? parseInt(savedTime, 10) : 300;
   };
   const [time, setTime] = useState(getInitialTime);
 

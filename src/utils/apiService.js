@@ -10,20 +10,23 @@ const fetch = (url, options = {}) => {
   const {method = 'GET', body, headers = {}} = options;
   const token = sessionStorage.getItem('usrtkn');
   const requestHeaders = Object.assign({}, {
-    Authorization: `Bearer ${token}`,
-    'Content-Type': 'application/json'
+    authorization: `Bearer ${token}`,
+    'Content-Type': headers.contentType || 'application/json'
   }, headers);
 
   let payload = body;
   if (method !== 'DELETE' && method !== 'GET') {
     payload = payload || {};
+    if (!headers.contentType){
+      payload = JSON.stringify(payload);
+    }
   }
 
   const requestData = {
     url,
     method,
     headers: requestHeaders,
-    data: JSON.stringify(payload)
+    data: payload
   };
 
   return axios(requestData)

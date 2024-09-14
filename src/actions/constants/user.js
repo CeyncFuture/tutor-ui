@@ -2,3 +2,4 @@ export const UPDATE_PROFILE = 'UPDATE_PROFILE';
 export const UPDATE_PROFILE_ERROR = 'UPDATE_PROFILE_ERROR';
 export const SIGN_OUT = 'SIGN_OUT';
 export const VERIFY_PROFILE = 'VERIFY_PROFILE';
+export const SHOW_LOADER = 'SHOW_LOADER';

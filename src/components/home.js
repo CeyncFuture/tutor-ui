@@ -1,23 +1,49 @@
-import React from 'react';
-import {useSelector} from "react-redux";
-import {get} from 'lodash';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { get } from "lodash";
 import EmailVerification from "./emailVerification";
+import RoleSelectionModal from "./roleSelectionModal";
+import QuestionForm from "./questionForm";
+import Profile from "./Profile";
+import commonActions from "../actions/common";
+import Loader from "./circularProgress";
 
 const Home = () => {
   const user = useSelector((state) => state.user);
-  const isVerified = get(user,'isVerified', false);
+  const subjects = useSelector((state) => state.common.subjects);
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(commonActions.getSubjects());
+  }, []);
 
-  if (!isVerified){
-    return (
-    <EmailVerification/>
-    );
-  } else {
-    return (
-      <h1>home</h1>
-    )
-  }
+  const renderContent = () => {
+    const is_verified = get(user, "is_verified", false);
+    const isLoading = get(user, "isLoading", false);
+    const role = get(user, "role", "all");
 
-}
+    if (isLoading) {
+      return <Loader />;
+    }
+    if (!is_verified) {
+      return <EmailVerification />;
+    }
+    if (role === "all") {
+      return <RoleSelectionModal />;
+    }
+    if (role === "student") {
+      return <QuestionForm />;
+    } else {
+      return subjects.categories.length > 0 && <Profile isEditable={true} />;
+    }
+  };
+
+  return (
+    <div className="home-container">
+      <div className="bg" />
+      <div style={{ position: "relative", zIndex: "2" }}>{renderContent()}</div>
+    </div>
+  );
+};
 
 export default Home;

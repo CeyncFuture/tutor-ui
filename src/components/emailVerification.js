@@ -15,12 +15,12 @@ const EmailVerification = () => {
     setIsLoading(true);
     const { data, error }  = await fetch('/auth/otp',{method: 'POST'});
     if (error) {
-      sessionStorage.setItem('isOTPSent', false);
+      sessionStorage.setItem('isOTPSent', JSON.stringify(false));
       setShowError(true);
     }
     if (data) {
-      sessionStorage.setItem('isOTPSent', true);
-      sessionStorage.setItem('timer', 1800);
+      sessionStorage.setItem('isOTPSent', JSON.stringify(true));
+      sessionStorage.setItem('timer', JSON.stringify(300));
     }
     setIsLoading(false);
   };

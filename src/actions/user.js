@@ -1,5 +1,5 @@
 import {get} from 'lodash';
-import {SIGN_OUT, UPDATE_PROFILE, UPDATE_PROFILE_ERROR, VERIFY_PROFILE} from "./constants/user";
+import {SIGN_OUT, UPDATE_PROFILE, UPDATE_PROFILE_ERROR, VERIFY_PROFILE, SHOW_LOADER} from "./constants/user";
 import fetch from '../utils/apiService';
 
 const userActions = {
@@ -23,6 +23,11 @@ const userActions = {
   verifyUserProfile(){
     return {
       type: VERIFY_PROFILE
+    }
+  },
+  showLoader(){
+    return {
+      type: SHOW_LOADER
     }
   },
   register(payload, navigate){
@@ -50,12 +55,12 @@ const userActions = {
         if (response.data){
           sessionStorage.setItem('usrtkn', get(response, 'data.payload.access_token'));
           dispatch(userActions.updateUserProfileSuccess(get(response, 'data.payload.user',  {
-            firstName: '',
-            lastName: '',
-            userRole: '',
-            profilePicture: 1,
-            isLoggedIn:true,
-            isVerified: false
+            first_name: '',
+            last_name: '',
+            role: '',
+            profile_picture: 1,
+            is_logged_in:true,
+            is_verified: false
           })));
           navigate('/')
         } else {
@@ -64,21 +69,35 @@ const userActions = {
       });
   }
 },
-  updateUserProfile(payload) {
-    return (dispatch, getState) => {
-      //using getState: can access current redux state
-      return fetch('/userData', {
-        method: 'PUT',
+  updateUserProfile(payload, isEdit) {
+    return (dispatch) => {
+      dispatch(userActions.showLoader());
+      return fetch('/user', {
+        method: isEdit ? 'PUT' : 'POST',
         body: payload
       })
         .then((response) => {
           if (response.data) {
-            dispatch(userActions.updateUserProfileSuccess(response));
+            dispatch(userActions.updateUserProfileSuccess(get(response, 'data.payload')));
           } else {
             dispatch(userActions.updateUserProfileFailure(response.error));
           }
         }
       );
+    }
+  },
+  getUserById(userId) {
+    return (dispatch) => {
+
+      return fetch(`/user/${userId}`)
+        .then((response) => {
+            if (response.data) {
+              dispatch(userActions.updateUserProfileSuccess(response));
+            } else {
+              dispatch(userActions.updateUserProfileFailure(response.error));
+            }
+          }
+        );
     }
   }
 };

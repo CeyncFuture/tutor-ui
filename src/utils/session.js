@@ -4,17 +4,18 @@ import {get} from 'lodash';
 
 
 const isWhiteListedRoute = () => {
-  const list = get(config,'WHITELISTED_ROUTES',['login', 'register']);
+  const list = get(config,'WHITELISTED_ROUTES',['login', 'register', 'tutor']);
   const route = window.location.pathname.split('/')[1];
   return route && list.indexOf(route) > -1;
 };
 
 const redirectToLogin = () => {
-  window.history.replaceState(null, '', '/login');
+  sessionStorage.clear();
+  window.location.href = '/login';
 }
 
 const getUserData = () => {
-  return fetch('/userData');
+  return fetch('/user');
 };
 
 const session = (callback) => {
@@ -29,15 +30,15 @@ const session = (callback) => {
     return callback();
   }
 
-  try {
-    getUserData()
-      .then((response) => {
-        response.isLoggedIn = true;
-        callback(response);
-      });
-  } catch {
-    redirectToLogin();
-  }
+  getUserData()
+    .then((response) => {
+      if(response.data){
+        response.is_logged_in = true;
+        callback(response.data.payload);
+      } else {
+        redirectToLogin();
+      }
+    });
 };
 
 export default session;
