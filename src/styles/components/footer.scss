@@ -1,23 +1,145 @@
-.footer-container {
-  text-align: center;
-  background-color: #2f7289;
-  padding: 0.5em;
+footer {
+  background-color: rgba(255,247,227,255);
+  color: #551063;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  z-index: 0;
+  overflow-x: hidden;
 
-  .footer-flax {
-    background-color: rgb(45, 45, 212);
-    text-align: center;
-    background-color: #2f7289;
-    resize: horizontal;
-    overflow: hidden;
+  .footer-content {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .phone-number {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      margin-bottom: 20px;
+
+      .img{
+        margin-right: 10px;
+      }
+      .text{
+        text-decoration: none;
+        color: #551063;
+      }
+    }
+    .contact-links {
+      display: flex;
+      padding-top: 100px;
+      justify-content: center;
+
+      ul {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0;
+
+        li {
+          margin: 10px 20px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+
+          .img {
+            align-self: center;
+
+            svg {
+              width: 40px;
+              height: 40px;
+              margin: 0;
+            }
+          }
+          .text {
+            margin-left: 5px;
+          }
+        }
+      }
+    }
+
+    .copyright {
+      font-size: 1rem;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+
+      a{
+        margin: 0 5px;
+      }
+    }
   }
 
-  .item {
-    padding: 0.5em;
-    color: rgb(1, 1, 1);
+  //Wave animation
+  @keyframes move_wave {
+    0% {
+      background-position-x: 0px;
+    }
+    40% {
+      background-position-x: 450px;
+    }
+    50% {
+      background-position-x: 500px;
+    }
+    90% {
+      background-position-x: 50px;
+    }
+    100% {
+      background-position-x: 0px;
+    }
   }
-  .auto {
-    flex: auto;
+
+  .wave {
+    width: 100vw;
+    height: 100%;
+    overflow: hidden;
+    background-repeat: repeat-x;
+    position: absolute;
+    transform-origin: center bottom;
+  }
+
+  .waveTop {
+    z-index: -4;
+    opacity: 0.5;
+    animation: move_wave 15s linear infinite;
+    background-image: url("../../assets/footer/wave-bot.png");
+
+    // visibility: hidden;
+  }
+
+  .waveMiddle {
+    z-index: -3;
+    opacity: 0.75;
+    animation: move_wave 12s linear infinite;
+    background-image: url("../../assets/footer/wave-mid.png");
+    // visibility: hidden;
+  }
+
+  .waveBottom {
+    z-index: -2;
+    animation: move_wave 10s linear infinite;
+    background-image: url("../../assets/footer/wave-top.png");
+    // visibility: hidden;
+  }
+
+  @media only screen and (max-width: 650px) {
+    .contact-links {
+      ul {
+        // flex-direction: column;
+
+        li {
+          .img {
+            img {
+            }
+          }
+          .text {
+            visibility: hidden;
+            position: absolute;
+            text-decoration: none;
+          }
+        }
+      }
+    }
   }
 }

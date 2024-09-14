@@ -1,38 +1,40 @@
 import axios from 'axios';
+import {get} from "lodash";
+import config from "../config";
 
 const fetch = (url, options = {}) => {
   if (!url && typeof url !== 'string') {
     return;
   }
-
+  url = get(config,'API_URL')+url;
   const {method = 'GET', body, headers = {}} = options;
+  const token = sessionStorage.getItem('usrtkn');
   const requestHeaders = Object.assign({}, {
-    Authorization: sessionStorage.getItem('usrtkn'),
-    'Content-Type': 'application/json'
+    authorization: `Bearer ${token}`,
+    'Content-Type': headers.contentType || 'application/json'
   }, headers);
 
   let payload = body;
   if (method !== 'DELETE' && method !== 'GET') {
     payload = payload || {};
+    if (!headers.contentType){
+      payload = JSON.stringify(payload);
+    }
   }
 
   const requestData = {
     url,
     method,
     headers: requestHeaders,
-    data: JSON.stringify(payload)
+    data: payload
   };
 
   return axios(requestData)
+    .then((response)=>{
+      return { data: response.data, error: null };
+    })
     .catch((error) => {
-     /* return {
-        firstName: 'Thilina',
-        lastName: 'Pahalagedara',
-        userRole: 'student',
-        profilePicture: 3,
-        tkn: 'sgfsgsgsgs'
-      };*/
-      throw error;
+      return { data: null, error: error };
     });
 };
 

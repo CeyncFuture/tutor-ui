@@ -1,9 +1,11 @@
 {
   "name": "tutor-ui",
+  "homepage": "http://www.toptutorsglobal.com",
   "version": "0.0.1",
   "private": true,
   "author": "Ceync Future",
   "license": "SEE LICENSE IN LICENSE",
+  "proxy": "http://server.toptutorsglobal.com",
   "dependencies": {
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
