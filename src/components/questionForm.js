@@ -38,6 +38,9 @@ const QuestionForm = () => {
       .then(response => {
         if (response.data){
           console.log('Success:', response.data);
+          setFiles([]);
+          event.target.reset();
+  
         } else {
           console.error('Error:', response.error);
         }

@@ -1,19 +1,11 @@
 import {createReducer} from '../utils/utils';
-import {GET_SUBJECTS_SUCCESS, GET_SUBJECTS_ERROR} from '../actions/constants/common';
+import {GET_SUBJECTS_SUCCESS, GET_SUBJECTS_ERROR, SET_ERROR} from '../actions/constants/common';
 
 const common = {
     subjects: {
-        categories:[
-            // {
-            //     subjects: [
-            //         {
-            //             id: '',
-            //             name:''
-            //         }
-            //     ]
-            // }
-        ]
-    }
+        categories:[]
+    },
+    hasError: false,
 };
 
 const states = {
@@ -22,6 +14,9 @@ const states = {
     },
     [GET_SUBJECTS_ERROR]: (state, payload) => {
         return { ...state, subjects: payload};
+    },
+    [SET_ERROR]: (state) => {
+        return { ...state, hasError: true};
     }
 };
 

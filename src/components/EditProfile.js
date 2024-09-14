@@ -12,7 +12,7 @@ import {useState} from "react";
 export default function EditProfile({setIsEdit, user}) {
     const dispatch = useDispatch();
     const [userData, setUserData] = useState(user);
-    const [selectedImage, setSelectedImage] = useState(user.profile_picture);
+    const [selectedImage, setSelectedImage] = useState(user.profile_picture || 1);
     const [updatedData, setUpdatedData] = useState({});
     const subjects = useSelector((state) => state.common.subjects);
 
@@ -34,19 +34,17 @@ export default function EditProfile({setIsEdit, user}) {
     return (
         <Box sx={{mt: 3, bgcolor: 'white', padding: 3}}>
             <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                {selectedImage && (
-                    <Grid item xs={12} style={{ marginBottom: '20px' }}>
-                        <Avatar alt="Selected Profile" src={require(`../assets/profilePictures/${selectedImage}.png`)} style={{ width: 100, height: 100 }} />
-                    </Grid>
-                )}
-                <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <Grid item xs={12} style={{ marginBottom: '20px', display: 'flex', justifyContent: 'center', alignItems: 'flex-end'}}>
+                    {selectedImage && (
+                            <Avatar alt="Selected Profile" src={require(`../assets/profilePictures/${selectedImage}.png`)} style={{ width: 100, height: 100 }} />
+                    )}
                     {[...Array(4)].map((_, i) => (
                         <Avatar
                             key={i}
                             alt={`Profile ${i}`}
                             src={require(`../assets/profilePictures/${i+1}.png`)}
                             onClick={() => handleImageClick(i+1)}
-                            style={{ cursor: 'pointer', margin: '10px', width: 50, height: 50 }}
+                            style = {selectedImage === i+1 ? { cursor: 'pointer', margin: '10px', width: 50, height: 50, border: "solid 2px blue" } : { cursor: 'pointer', margin: '10px', width: 50, height: 50, }}
                         />
                     ))}
                 </Grid>

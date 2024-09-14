@@ -1,6 +1,7 @@
 import {get} from 'lodash';
 import {SIGN_OUT, UPDATE_PROFILE, UPDATE_PROFILE_ERROR, VERIFY_PROFILE, SHOW_LOADER} from "./constants/user";
 import fetch from '../utils/apiService';
+import commonActions from './common';
 
 const userActions = {
   signOut(){
@@ -31,7 +32,7 @@ const userActions = {
     }
   },
   register(payload, navigate){
-    return () => {
+    return (dispatch) => {
       return fetch('/auth/register', {
         method: 'POST',
         body: payload
@@ -41,6 +42,7 @@ const userActions = {
             navigate('/login')
           } else {
             console.log(response.error);
+            // dispatch(commonActions.setError());
           }
         });
     }
@@ -65,6 +67,7 @@ const userActions = {
           navigate('/')
         } else {
           console.log(response.error);
+          // dispatch(commonActions.setError());
         }
       });
   }
@@ -78,9 +81,11 @@ const userActions = {
       })
         .then((response) => {
           if (response.data) {
+            !isEdit && sessionStorage.setItem('usrtkn', get(response, 'data.token.access_token'));
             dispatch(userActions.updateUserProfileSuccess(get(response, 'data.payload')));
           } else {
             dispatch(userActions.updateUserProfileFailure(response.error));
+            dispatch(commonActions.setError());
           }
         }
       );

@@ -59,6 +59,7 @@ const TutoringInfoForm = ({setStep, questionnaire, setQuestionnaire}) => {
                       label="Which is the main tutoring area you are doing or are you willing to do?’ "
                       name="interests"
                       items={subjects}
+                      interests={answers.interests}
                       onChange={handleChange}
                     />
                 </Grid>

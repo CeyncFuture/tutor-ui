@@ -7,23 +7,28 @@ import QuestionForm from "./questionForm";
 import Profile from "./Profile";
 import commonActions from "../actions/common";
 import Loader from "./circularProgress";
+import ErrorPage from "./errorPage";
 
 const Home = () => {
   const user = useSelector((state) => state.user);
   const subjects = useSelector((state) => state.common.subjects);
+  const hasError = useSelector((state) => state.common.hasError);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(commonActions.getSubjects());
   }, []);
-
+  
   const renderContent = () => {
     const is_verified = get(user, "is_verified", false);
     const isLoading = get(user, "isLoading", false);
     const role = get(user, "role", "all");
 
-    if (isLoading) {
+    if (isLoading && !hasError) {
       return <Loader />;
+    }
+    if(hasError){
+      return <ErrorPage isNotfound = {false}/>;
     }
     if (!is_verified) {
       return <EmailVerification />;

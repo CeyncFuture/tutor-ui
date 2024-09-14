@@ -25,7 +25,6 @@ const Header = () => {
   const handleAccountSettings = () => {
     setIsOpen(false);
     navigate('/account', { state: { isEditDisabled: false } });
-    navigate('/account', { state: { isEditDisabled: false } });
   }
 
   const renderAccountList = () => {
@@ -55,22 +54,11 @@ const Header = () => {
     <div className="header-container">
       <img className="header-logo" src={logo} alt="logo" onClick={() => is_logged_in && navigate('/home')} />
       {is_logged_in && userRole !== 'tutor' && <img
-      <img className="header-logo" src={logo} alt="logo" onClick={() => is_logged_in && navigate('/home')} />
-      {is_logged_in && userRole !== 'tutor' && <img
         className="header-profile"
-        src={require(`../assets/profilePictures/${profile_picture}.png`)}
         src={require(`../assets/profilePictures/${profile_picture}.png`)}
         alt="profile"
         onClick={() => setIsOpen(!isOpen)}
       />}
-      {is_logged_in && userRole === 'tutor' &&
-      <button
-        className="signOut-button"
-        onClick={handleSignOut}
-      >
-        <h2>Sign out</h2>
-      </button>
-      }
       {is_logged_in && userRole === 'tutor' &&
       <button
         className="signOut-button"

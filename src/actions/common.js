@@ -1,5 +1,5 @@
 import fetch from '../utils/apiService';
-import {GET_SUBJECTS_SUCCESS, GET_SUBJECTS_ERROR} from "./constants/common";
+import {GET_SUBJECTS_SUCCESS, GET_SUBJECTS_ERROR, SET_ERROR} from "./constants/common";
 
 const commonActions = {
     getSubjectsSuccess(payload) {
@@ -14,6 +14,11 @@ const commonActions = {
             payload: error
         };
     },
+    setError() {
+        return {
+            type: SET_ERROR,
+        };
+    },
     getSubjects () {
         return (dispatch) => {
             return fetch(`/subject`)
@@ -22,6 +27,7 @@ const commonActions = {
                             dispatch(commonActions.getSubjectsSuccess(response.data.payload));
                         } else {
                             dispatch(commonActions.getSubjectsFailure(response.error));
+                            dispatch(commonActions.setError());
                         }
                     }
                 );
