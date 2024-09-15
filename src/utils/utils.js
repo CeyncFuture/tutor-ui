@@ -29,16 +29,16 @@ export function createNotification(type, message, title, duration, callback) {
 
     switch (type) {
       case 'info':
-        NotificationManager.info(message || 'Info message', capitalize(title || 'Info'), duration, callback);
+        NotificationManager.info(message || 'Info message', (title || 'Info').toUpperCase(), duration, callback);
         break;
       case 'success':
-        NotificationManager.success(message || 'Success message', capitalize(title || 'Success'), duration, callback);
+        NotificationManager.success(message || 'Success message', (title || 'Success').toUpperCase(), duration, callback);
         break;
       case 'warning':
-        NotificationManager.warning(message || 'Warning message', capitalize(title || 'Warning'), duration, callback);
+        NotificationManager.warning(message || 'Warning message', (title || 'Warning').toUpperCase(), duration, callback);
         break;
       case 'error':
-        NotificationManager.error(message || 'Error message', (title || 'Error'), duration, callback);
+        NotificationManager.error(message || 'Error message', (title || 'Error').toUpperCase(), duration, callback);
         break;
       default:
         NotificationManager.info(message || 'Info message');

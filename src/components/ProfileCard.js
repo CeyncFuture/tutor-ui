@@ -45,11 +45,11 @@ export default function ProfileCard(props) {
             <Typography sx={{color: 'rgb(80, 87, 89)', fontSize: '14px'}}>
                 {data?.phone_number}
             </Typography>
-            <Stack sx={{mt: 3}} direction="row" flexWrap="wrap" spacing={1}>
+            <Stack sx={{mt: 3}} direction="row" flexWrap="wrap" justifyContent={"center"} spacing={1}>
                 {
                     data?.interests?.map((subject, index) => {
                       const subjectDetails = getSubjectById(subjects.categories, subject);
-                      return (< Chip key = {index} label = {subjectDetails.name} color = "primary" />)
+                      return (< Chip key = {index} label = {subjectDetails.name} color = "primary" className="mui-custom-chip"/>)
                      })
                 }
             </Stack>
