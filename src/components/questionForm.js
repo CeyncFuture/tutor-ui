@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import {get} from "lodash";
 import { TextField, Button, Box, Typography, List, ListItem, ListItemText, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { styled } from '@mui/material/styles';
+import {createNotification} from "../utils/utils";
 import fetch from '../utils/apiService';
 
 const Input = styled('input')({
@@ -40,9 +42,11 @@ const QuestionForm = () => {
           console.log('Success:', response.data);
           setFiles([]);
           event.target.reset();
+          createNotification("success",get(response, 'data.message', 'Successfully created!'));
   
         } else {
           console.error('Error:', response.error);
+          createNotification("error",get(response, 'error.response.data.message', 'An unexpected error occurred.'));
         }
       })
   };
