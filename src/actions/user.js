@@ -41,6 +41,7 @@ const userActions = {
       })
         .then((response) => {
           if (response.data) {
+            createNotification("success",get(response, 'data.message', 'Successfully registered!'));
             navigate('/login')
           } else {
             console.log(response.error);
@@ -67,6 +68,7 @@ const userActions = {
             is_logged_in:true,
             is_verified: false
           })));
+          createNotification("success",get(response, 'data.message', 'Successfully login!'));
           navigate('/')
         } else {
           console.log(response.error);
@@ -87,7 +89,7 @@ const userActions = {
           if (response.data) {
             !isEdit && sessionStorage.setItem('usrtkn', get(response, 'data.token.access_token'));
             dispatch(userActions.updateUserProfileSuccess(get(response, 'data.payload')));
-            createNotification("error",get(response, 'data.message', 'Successfully updated.'));
+            createNotification("success",get(response, 'data.message', 'Successfully updated!'));
           } else {
             dispatch(userActions.updateUserProfileFailure(response.error));
             // dispatch(commonActions.setError());
