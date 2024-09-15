@@ -32,7 +32,8 @@ const EmailVerification = () => {
     setIsLoading(true);
     const { data, error }  = await fetch('/auth/otp-verify',{method: 'POST', body: { otp }});
     if (error) {
-      setShowError(true);
+      // setShowError(true);
+      createNotification("error",get(error, 'error.response.data.message', 'Failed OTP verification! Please try again.'));
     }
     if (data) {
       dispatch(userActions.verifyUserProfile());
