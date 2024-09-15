@@ -23,8 +23,8 @@ const states = {
   [VERIFY_PROFILE]: (state) => {
     return { ...state, is_verified: true }
   },
-  [SHOW_LOADER]: (state) => {
-    return { ...state, isLoading: true }
+  [SHOW_LOADER]: (state, payload) => {
+    return { ...state, isLoading: payload || true }
   },
 };
 

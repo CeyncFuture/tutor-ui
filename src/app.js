@@ -3,9 +3,9 @@ import routes from '../src/routes';
 import Header from "./components/header";
 import Footer from "./components/footer";
 import {BrowserRouter} from "react-router-dom";
+import {NotificationContainer} from 'react-notifications';
 
 function App() {
-
   return (
     <BrowserRouter >
       <Header />
@@ -17,6 +17,7 @@ function App() {
       >
         {routes}
       </main>
+      <NotificationContainer/>
       <Footer />
     </BrowserRouter>
   );

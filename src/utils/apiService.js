@@ -34,6 +34,7 @@ const fetch = (url, options = {}) => {
       return { data: response.data, error: null };
     })
     .catch((error) => {
+      console.log("error", error);
       return { data: null, error: error };
     });
 };
