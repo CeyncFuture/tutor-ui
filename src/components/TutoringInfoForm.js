@@ -70,7 +70,7 @@ const TutoringInfoForm = ({setStep, questionnaire, setQuestionnaire}) => {
                 sx={{mt: 3, mb: 1}}
                 disabled={answers.previous_experience === undefined
                     || (answers.exp_confirmation === undefined || answers.exp_confirmation === "")
-                    || (answers.interests === undefined || answers.interests.length === 0)}
+                    || (answers.interests === undefined)}
                 onClick={handleNext}
             >
                 Next
