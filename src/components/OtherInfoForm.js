@@ -101,6 +101,10 @@ const OtherInfoForm = ({setStep, questionnaire, setQuestionnaire}) => {
                 fullWidth
                 variant="contained"
                 sx={{mt: 3, mb: 1}}
+                disabled={answers.device === undefined
+                    || answers.employment === undefined
+                    || (answers.work_hours === undefined || answers.work_hours === "")
+                    || (answers.expected_earnings === undefined || answers.expected_earnings === "")}
                 onClick={handleNext}
             >
                 Next

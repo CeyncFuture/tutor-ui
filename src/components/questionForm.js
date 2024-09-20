@@ -24,31 +24,44 @@ const QuestionForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    files.forEach((file)=>{
-      formData.append('attachments', file);
+
+    let isFileLarge = false;
+
+    files.forEach((file) => {
+        if(file.size > 2097152) {
+            isFileLarge = true;
+        }
     })
 
-    fetch('/question', {
-      method: 'POST',
-      body: formData,
-      headers:{
-        contentType: 'multipart/form-data',
-        accept: 'multipart/form-data',
+      if(isFileLarge) {
+          createNotification("error", 'Maximum Allowed File Size is 2MB');
+      } else {
+          const formData = new FormData(event.currentTarget);
+          files.forEach((file)=>{
+              formData.append('attachments', file);
+          })
+
+          fetch('/question', {
+              method: 'POST',
+              body: formData,
+              headers:{
+                  contentType: 'multipart/form-data',
+                  accept: 'multipart/form-data',
+              }
+          })
+          .then(response => {
+              if (response.data){
+                  console.log('Success:', response.data);
+                  setFiles([]);
+                  event.target.reset();
+                  createNotification("success",get(response, 'data.message', 'Successfully created!'));
+
+              } else {
+                  console.error('Error:', response.error);
+                  createNotification("error",get(response, 'error.response.data.message', 'An unexpected error occurred.'));
+              }
+          })
       }
-    })
-      .then(response => {
-        if (response.data){
-          console.log('Success:', response.data);
-          setFiles([]);
-          event.target.reset();
-          createNotification("success",get(response, 'data.message', 'Successfully created!'));
-  
-        } else {
-          console.error('Error:', response.error);
-          createNotification("error",get(response, 'error.response.data.message', 'An unexpected error occurred.'));
-        }
-      })
   };
 
   return (

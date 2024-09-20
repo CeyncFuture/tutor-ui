@@ -85,6 +85,10 @@ const EducationInfoForm = ({setStep, questionnaire, setQuestionnaire}) => {
                 fullWidth
                 variant="contained"
                 sx={{mt: 3, mb: 1}}
+                disabled={answers.highest_education_qualification === undefined
+                    || (answers.high_school === undefined || answers.high_school === "")
+                    || (answers.degree === undefined || answers.degree === "")
+                    || (answers.university === undefined || answers.university === "")}
                 onClick={handleNext}
             >
                 Next
