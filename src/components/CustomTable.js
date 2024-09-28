@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
     Table,
     TableBody,
@@ -8,17 +8,15 @@ import {
 } from '@mui/material';
 import PaginationBar from "./PaginationBar";
 
-const CustomTable = ({headerRow, dataRows, totalElements}) => {
-    const [page, setPage] = useState(1);
-
+const CustomTable = ({headerRow, dataRows, page, setPage, totalElements}) => {
     const handleChange = (e, value) => {
         setPage(value);
     }
 
     return (
-        <Box>
-            <Table>
-                <TableHead>
+        <Box sx={{marginTop: "30px"}}>
+            <Table sx={{marginBottom: "30px", border: '1px solid #E0E0E0'}}>
+                <TableHead sx={{backgroundColor: '#E0E0E0'}}>
                     <TableRow>
                         {headerRow}
                     </TableRow>
