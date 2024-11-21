@@ -18,7 +18,9 @@ function App() {
         {routes}
       </main>
       <NotificationContainer/>
-      <Footer />
+      <div className='footer-wrapper'>
+        <Footer />
+      </div>
     </BrowserRouter>
   );
 }

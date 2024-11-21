@@ -1,9 +1,9 @@
 #mainContent{
-  min-height: 90vh;
+  min-height: calc(90vh + 100px);
   background-color: $off-white;
 }
 .footer{
-  height: 10vh;
+  height: calc(10vh - 100px);
   background-color: $light-grey;
 }
 .home-container{
@@ -14,7 +14,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    min-height: 90vh;
+    min-height: calc(90vh + 100px);
     background-image: url('../../../src/assets/bg.jpg');
     background-size: cover;
     background-position: center;
