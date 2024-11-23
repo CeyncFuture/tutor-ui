@@ -29,8 +29,8 @@ const commonActions = {
                             dispatch(commonActions.getSubjectsSuccess(response.data.payload));
                         } else {
                             dispatch(commonActions.getSubjectsFailure(response.error));
-                            // dispatch(commonActions.setError());
                             createNotification("error",get(response, 'error.response.data.message', 'An unexpected error occurred.'));
+                            // dispatch(commonActions.setError());
                         }
                     }
                 );

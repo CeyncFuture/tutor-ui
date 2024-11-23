@@ -44,9 +44,8 @@ const userActions = {
             createNotification("success",get(response, 'data.message', 'Successfully registered!'));
             navigate('/login')
           } else {
-            console.log(response.error);
-            // dispatch(commonActions.setError());
             createNotification("error",get(response, 'error.response.data.message', 'An unexpected error occurred.'));
+            // dispatch(commonActions.setError());
           }
         });
     }
@@ -71,7 +70,6 @@ const userActions = {
           createNotification("success",get(response, 'data.message', 'Successfully login!'));
           navigate('/')
         } else {
-          console.log(response.error);
           // dispatch(commonActions.setError());
           createNotification("error",get(response, 'error.response.data.message', 'An unexpected error occurred.'));
         }
@@ -92,7 +90,7 @@ const userActions = {
             createNotification("success",get(response, 'data.message', 'Successfully updated!'));
           } else {
             dispatch(userActions.updateUserProfileFailure(response.error));
-            // dispatch(commonActions.setError());
+            dispatch(commonActions.setError());
             dispatch(userActions.showLoader(false));
             createNotification("error",get(response, 'error.response.data.message', 'An unexpected error occurred.'));
           }

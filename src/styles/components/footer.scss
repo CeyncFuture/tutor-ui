@@ -1,6 +1,10 @@
+$footer-blue: #15548f;
+$footer-blue-dark: #145a8f;
+$footer-indigo: #551063;
+
 footer {
   background-color: rgba(255,247,227,0);
-  color: #551063;
+  color: $footer-blue;
   position: relative;
   bottom: 0;
   width: 100%;
@@ -26,7 +30,7 @@ footer {
       }
       .text{
         text-decoration: none;
-        color: #551063;
+        color: $footer-blue;
       }
     }
     .contact-links {
@@ -70,8 +74,28 @@ footer {
 
       a{
         margin: 0 5px;
+        text-decoration: none;
+        color: $footer-blue;
       }
     }
+
+    .css-kw0y8f-MuiSvgIcon-root {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      width: 1em;
+      height: 1em;
+      display: inline-block;
+      fill: $footer-blue;
+      -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+      flex-shrink: 0;
+      -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      font-size: 1.5rem;
+      color: $footer-blue;
+  }
   }
 
   //Wave animation
