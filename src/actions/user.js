@@ -90,7 +90,7 @@ const userActions = {
             createNotification("success",get(response, 'data.message', 'Successfully updated!'));
           } else {
             dispatch(userActions.updateUserProfileFailure(response.error));
-            dispatch(commonActions.setError());
+            // dispatch(commonActions.setError());
             dispatch(userActions.showLoader(false));
             createNotification("error",get(response, 'error.response.data.message', 'An unexpected error occurred.'));
           }
