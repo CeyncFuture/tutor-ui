@@ -1,9 +1,9 @@
 const initialUserData = {
-  firstName: '',
-  lastName: '',
-  userRole: '',
-  profilePicture: 1,
-  isLoggedIn: false
+  first_name: '',
+  last_name: '',
+  role: '',
+  profile_picture: 1,
+  is_logged_in: false
 };
 const setInitialState = (user = initialUserData) => {
   return {

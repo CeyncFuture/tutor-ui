@@ -3,4 +3,9 @@
 
 @import 'components/app';
 @import 'components/header';
+@import 'components/common';
+@import 'components/footer';
+@import './components/mui.scss';
+
+@import 'react-notifications/lib/notifications.css';
 @import 'components/test';
