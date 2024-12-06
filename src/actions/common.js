@@ -1,4 +1,6 @@
+import {get} from 'lodash';
 import fetch from '../utils/apiService';
+import { createNotification } from '../utils/utils';
 import {GET_SUBJECTS_SUCCESS, GET_SUBJECTS_ERROR, SET_ERROR} from "./constants/common";
 
 const commonActions = {
@@ -27,7 +29,8 @@ const commonActions = {
                             dispatch(commonActions.getSubjectsSuccess(response.data.payload));
                         } else {
                             dispatch(commonActions.getSubjectsFailure(response.error));
-                            dispatch(commonActions.setError());
+                            createNotification("error",get(response, 'error.response.data.message', 'An unexpected error occurred.'));
+                            // dispatch(commonActions.setError());
                         }
                     }
                 );

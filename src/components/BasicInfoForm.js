@@ -71,6 +71,9 @@ const BasicInfoForm = ({setStep, questionnaire, setQuestionnaire}) => {
                 fullWidth
                 variant="contained"
                 sx={{mt: 3}}
+                disabled={(answers.address === undefined || answers.address === "")
+                    || answers.country === undefined
+                    || (answers.phone_number === undefined || answers.phone_number === "")}
                 onClick={handleNext}
             >
                 Next

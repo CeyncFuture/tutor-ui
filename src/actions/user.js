@@ -2,6 +2,7 @@ import {get} from 'lodash';
 import {SIGN_OUT, UPDATE_PROFILE, UPDATE_PROFILE_ERROR, VERIFY_PROFILE, SHOW_LOADER} from "./constants/user";
 import fetch from '../utils/apiService';
 import commonActions from './common';
+import { createNotification } from '../utils/utils';
 
 const userActions = {
   signOut(){
@@ -26,9 +27,10 @@ const userActions = {
       type: VERIFY_PROFILE
     }
   },
-  showLoader(){
+  showLoader(payload){
     return {
-      type: SHOW_LOADER
+      type: SHOW_LOADER,
+      payload
     }
   },
   register(payload, navigate){
@@ -39,9 +41,10 @@ const userActions = {
       })
         .then((response) => {
           if (response.data) {
+            createNotification("success",get(response, 'data.message', 'Successfully registered!'));
             navigate('/login')
           } else {
-            console.log(response.error);
+            createNotification("error",get(response, 'error.response.data.message', 'An unexpected error occurred.'));
             // dispatch(commonActions.setError());
           }
         });
@@ -64,10 +67,11 @@ const userActions = {
             is_logged_in:true,
             is_verified: false
           })));
+          createNotification("success",get(response, 'data.message', 'Successfully login!'));
           navigate('/')
         } else {
-          console.log(response.error);
           // dispatch(commonActions.setError());
+          createNotification("error",get(response, 'error.response.data.message', 'An unexpected error occurred.'));
         }
       });
   }
@@ -83,9 +87,12 @@ const userActions = {
           if (response.data) {
             !isEdit && sessionStorage.setItem('usrtkn', get(response, 'data.token.access_token'));
             dispatch(userActions.updateUserProfileSuccess(get(response, 'data.payload')));
+            createNotification("success",get(response, 'data.message', 'Successfully updated!'));
           } else {
             dispatch(userActions.updateUserProfileFailure(response.error));
-            dispatch(commonActions.setError());
+            // dispatch(commonActions.setError());
+            dispatch(userActions.showLoader(false));
+            createNotification("error",get(response, 'error.response.data.message', 'An unexpected error occurred.'));
           }
         }
       );
@@ -99,7 +106,8 @@ const userActions = {
             if (response.data) {
               dispatch(userActions.updateUserProfileSuccess(response));
             } else {
-              dispatch(userActions.updateUserProfileFailure(response.error));
+              // dispatch(userActions.updateUserProfileFailure(response.error));
+              createNotification("error",get(response, 'error.response.data.message', 'An unexpected error occurred.'));
             }
           }
         );
@@ -113,7 +121,8 @@ const userActions = {
           if (response.data) {
             dispatch(userActions.updateUserProfileSuccess(response));
           } else {
-            dispatch(userActions.updateUserProfileFailure(response.error));
+            // dispatch(userActions.updateUserProfileFailure(response.error));
+            createNotification("error",get(response, 'error.response.data.message', 'An unexpected error occurred.'));
           }
         }
       );
