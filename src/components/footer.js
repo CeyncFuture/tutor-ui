@@ -18,7 +18,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                <Facebook color={"secondary"} />
+                <Facebook sx={{ color: "#15548f" }} />
               </a>
             </li>
             <li>
@@ -28,7 +28,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                <WhatsApp color={"secondary"} />
+                <WhatsApp sx={{ color: "#15548f" }} />
               </a>
             </li>
             <li>
@@ -37,14 +37,14 @@ const Footer = () => {
                 href="mailto:toptutorsglobal@gmail.com"
                 rel="noreferrer"
               >
-                <Email color={"secondary"} />
+                <Email sx={{ color: "#15548f" }} />
               </a>
             </li>
           </ul>
         </div>
         <div className="phone-number">
           <a className="img" href="tel:+17657671558">
-            <PermPhoneMsgIcon color={"secondary"} />
+            <PermPhoneMsgIcon sx={{ color: "#15548f" }} />
           </a>
           <a className="text" href="tel:+17657671558">
             +1 (765) 767-1558
