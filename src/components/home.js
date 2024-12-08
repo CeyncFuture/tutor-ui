@@ -8,6 +8,7 @@ import Profile from "./Profile";
 import commonActions from "../actions/common";
 import Loader from "./circularProgress";
 import ErrorPage from "./errorPage";
+import AdminHome from "./AdminHome";
 
 const Home = () => {
   const user = useSelector((state) => state.user);
@@ -38,6 +39,8 @@ const Home = () => {
     }
     if (role === "student") {
       return <QuestionForm />;
+    }  else if (role === "admin") {
+      return <AdminHome/>;
     } else {
       return subjects.categories.length > 0 && <Profile isEditable={true} />;
     }

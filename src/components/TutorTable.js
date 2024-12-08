@@ -7,7 +7,7 @@ import CustomTable from "./CustomTable";
 import {useDispatch, useSelector} from "react-redux";
 import adminActions from "../actions/admin";
 import Loader from "./circularProgress";
-import {tutors} from "../utils/constants";
+import {useNavigate} from "react-router";
 
 const headers = [
     "Name",
@@ -17,9 +17,11 @@ const headers = [
 ]
 
 const TutorTable = () => {
-    const [page, setPage] = useState(1);
-    const admin = useSelector((state) => state.admin);
+    const [page, setPage] = useState(0);
+    const isFetching = useSelector((state) => state.admin.isLoading);
+    const tutors = useSelector((state) => state.admin.tutors);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
         dispatch(adminActions.showLoader(true));
@@ -30,7 +32,7 @@ const TutorTable = () => {
         <TableCell key={index} align="center">{header}</TableCell>
     )
 
-    const dataRows = tutors.map((tutor, index) =>
+    const dataRows = tutors?.map((tutor, index) =>
         <TableRow
             key={index}
             sx={{'&:last-child td, &:last-child th': {border: 0}}}
@@ -42,9 +44,9 @@ const TutorTable = () => {
         </TableRow>
     ) || []
 
-    return admin.isLoading ?
+    return isFetching ?
         <Loader/>:
-        <CustomTable headerRow={headerRow} dataRows={dataRows} page={page} setPage={setPage} totalElements={admin?.questions?.length || 0}/>;
+        <CustomTable headerRow={headerRow} dataRows={dataRows} page={page} setPage={setPage} totalElements={tutors?.length || 0}/>;
 };
 
 export default TutorTable;

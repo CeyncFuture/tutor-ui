@@ -18,7 +18,7 @@ const states = {
     [GET_TUTORS]: (state, payload) => {
         return {
             ...state,
-            questions: payload,
+            tutors: payload,
         };
     },
     [SHOW_LOADER]: (state, payload) => {

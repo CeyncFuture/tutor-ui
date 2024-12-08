@@ -18,7 +18,7 @@ const adminActions = {
                         if (response.data) {
                             dispatch({
                                 type: GET_QUESTIONS,
-                                payload: response.data
+                                payload: response.data.payload.questions
                             });
                         } else {
                             createNotification("error",get(response, 'error.response.data.message', 'An unexpected error occurred.'));
@@ -36,7 +36,7 @@ const adminActions = {
                         if (response.data) {
                             dispatch({
                                 type: GET_TUTORS,
-                                payload: response.data
+                                payload: response.data.payload.tutors
                             });
                         } else {
                             createNotification("error",get(response, 'error.response.data.message', 'An unexpected error occurred.'));

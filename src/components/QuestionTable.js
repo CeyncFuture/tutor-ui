@@ -6,7 +6,6 @@ import {
 import CustomTable from "./CustomTable";
 import {useDispatch, useSelector} from "react-redux";
 import adminActions from "../actions/admin";
-import {questions} from "../utils/constants";
 import Loader from "./circularProgress";
 
 const headers = [
@@ -16,8 +15,9 @@ const headers = [
 ]
 
 const QuestionTable = () => {
-    const [page, setPage] = useState(1);
-    const admin = useSelector((state) => state.admin);
+    const [page, setPage] = useState(0);
+    const isFetching = useSelector((state) => state.admin.isLoading);
+    const questions = useSelector((state) => state.admin.questions);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -29,20 +29,24 @@ const QuestionTable = () => {
         <TableCell key={index} align="center">{header}</TableCell>
     ))
 
-    const dataRows = questions.map((question, index) =>
+    const dataRows = questions?.map((question, index) =>
         <TableRow
             key={index}
             sx={{'&:last-child td, &:last-child th': {border: 0}}}
         >
-            <TableCell align="center">{question.name}</TableCell>
-            <TableCell align="center">{question.whatsappNo}</TableCell>
-            <TableCell align="center">{question.attachment.fileName}</TableCell>
+            <TableCell align="center">{question?.question}</TableCell>
+            <TableCell align="center">{question?.phone_number}</TableCell>
+            <TableCell align="center">
+                <a href={question?.question_attachments[0].file_path}>
+                    {question?.question_attachments[0].file_path}
+                </a>
+            </TableCell>
         </TableRow>
     ) || []
 
-    return admin.isLoading ?
+    return isFetching ?
         <Loader/> :
-        <CustomTable headerRow={headerRow} dataRows={dataRows} page={page} setPage={setPage} totalElements={admin?.questions?.length || 0}/>;
+        <CustomTable headerRow={headerRow} dataRows={dataRows} page={page} setPage={setPage} totalElements={questions?.length || 0}/>;
 };
 
 export default QuestionTable;
