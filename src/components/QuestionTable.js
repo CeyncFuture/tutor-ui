@@ -5,8 +5,9 @@ import {
 } from '@mui/material';
 import CustomTable from "./CustomTable";
 import {useDispatch, useSelector} from "react-redux";
-import adminActions from "../actions/admin";
+import questionActions from "../actions/question";
 import Loader from "./circularProgress";
+import {GET_QUESTIONS_END} from "../actions/constants/question";
 
 const headers = [
     "Question",
@@ -16,13 +17,14 @@ const headers = [
 
 const QuestionTable = () => {
     const [page, setPage] = useState(0);
-    const isFetching = useSelector((state) => state.admin.isLoading);
-    const questions = useSelector((state) => state.admin.questions);
+    const isFetching = useSelector((state) => state.question.isLoading);
+    const questions = useSelector((state) => state.question.questions);
+    const error = useSelector((state) => state.question.error);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(adminActions.showLoader(true));
-        dispatch(adminActions.getQuestions(page));
+        dispatch({type: GET_QUESTIONS_END})
+        dispatch(questionActions.getQuestions(page));
     }, [page])
 
     const headerRow = headers.map((header, index) => (

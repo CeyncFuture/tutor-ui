@@ -5,9 +5,9 @@ import {
 } from '@mui/material';
 import CustomTable from "./CustomTable";
 import {useDispatch, useSelector} from "react-redux";
-import adminActions from "../actions/admin";
 import Loader from "./circularProgress";
 import {useNavigate} from "react-router";
+import tutorActions from "../actions/tutor";
 
 const headers = [
     "Name",
@@ -18,14 +18,13 @@ const headers = [
 
 const TutorTable = () => {
     const [page, setPage] = useState(0);
-    const isFetching = useSelector((state) => state.admin.isLoading);
-    const tutors = useSelector((state) => state.admin.tutors);
+    const isFetching = useSelector((state) => state.tutor.isLoading);
+    const tutors = useSelector((state) => state.tutor.tutors);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     useEffect(() => {
-        dispatch(adminActions.showLoader(true));
-        dispatch(adminActions.getTutors(page));
+        dispatch(tutorActions.getTutors(page));
     }, [page])
 
     const headerRow = headers.map((header, index) =>
