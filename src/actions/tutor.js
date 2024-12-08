@@ -8,21 +8,20 @@ const tutorActions = {
         return (dispatch) => {
             return fetch(`/tutor?page=${page}&size=20`)
                 .then(response => {
-                        const tutors = response.data.payload.tutors;
-
-                        dispatch({
-                            type: GET_TUTORS_SUCCESS,
-                            payload: tutors
-                        })
+                        if (response.data) {
+                            dispatch({
+                                type: GET_TUTORS_SUCCESS,
+                                payload: get(response, "data.payload.tutors")
+                            })
+                        } else {
+                            dispatch({
+                                type: GET_TUTORS_FAILURE,
+                                payload: get(response, 'error.response.data.message', 'An unexpected error occurred.')
+                            })
+                            createNotification("error",get(response, 'error.response.data.message', 'An unexpected error occurred.'));
+                        }
                     }
-                ).catch(error => {
-                    createNotification("error",get(error, 'error.message', 'An unexpected error occurred.'));
-
-                    dispatch({
-                        type: GET_TUTORS_FAILURE,
-                        payload: error.message
-                    })
-                })
+                )
         }
     },
 };

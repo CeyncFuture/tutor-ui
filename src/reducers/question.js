@@ -2,7 +2,7 @@ import {createReducer} from '../utils/utils';
 import {GET_QUESTIONS_START, GET_QUESTIONS_SUCCESS, GET_QUESTIONS_FAILURE, GET_QUESTIONS_END} from "../actions/constants/question";
 
 const initialState = {
-    data: [],
+    questions: [],
     isLoading: false,
     error: null
 };

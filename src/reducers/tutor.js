@@ -2,7 +2,7 @@ import {createReducer} from '../utils/utils';
 import {GET_TUTORS_START, GET_TUTORS_SUCCESS, GET_TUTORS_FAILURE, GET_TUTORS_END} from "../actions/constants/tutor";
 
 const initialState = {
-    data: [],
+    tutors: [],
     isLoading: false
 };
 
@@ -16,7 +16,7 @@ const reducers = {
     [GET_TUTORS_SUCCESS]: (state, payload) => {
         return {
             ...state,
-            questions: payload
+            tutors: payload
         };
     },
     [GET_TUTORS_FAILURE]: (state, payload) => {

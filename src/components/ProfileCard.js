@@ -25,10 +25,8 @@ export default function ProfileCard(props) {
   }
 
   const handleCopy = () => {
-      const text = document.getElementById("profileLink").textContent;
-
       const tempTextarea = document.createElement("textarea");
-      tempTextarea.value = text;
+      tempTextarea.value = sharableLink;
 
       document.body.appendChild(tempTextarea);
 
@@ -64,9 +62,12 @@ export default function ProfileCard(props) {
             <Typography sx={{color: 'rgb(80, 87, 89)', fontSize: '14px'}}>
                 {data?.email}
             </Typography>
-            <Typography sx={{color: 'rgb(80, 87, 89)', fontSize: '14px'}}>
-                {data?.phone_number}
-            </Typography>
+            {
+                !isSharedProfile &&
+                <Typography sx={{color: 'rgb(80, 87, 89)', fontSize: '14px'}}>
+                    {data?.phone_number}
+                </Typography>
+            }
             <Stack sx={{mt: 3}} direction="row" flexWrap="wrap" justifyContent={"center"} spacing={1}>
                 {
                     data?.interests?.map((subject, index) => {
@@ -89,18 +90,13 @@ export default function ProfileCard(props) {
                 </Button>
             }
             {!isSharedProfile &&
-                <>
-                    <Typography id="profileLink" sx={{color: 'rgb(80, 87, 89)', fontSize: '14px'}}>
-                        {sharableLink}
-                    </Typography>
-                    <Button
-                        variant="outlined"
-                        sx={{mt: 3, mb: 2}}
-                        onClick={handleCopy}
-                    >
-                        Copy Profile Link
-                    </Button>
-                </>
+                <Button
+                    variant="outlined"
+                    sx={{mt: 3, mb: 2}}
+                    onClick={handleCopy}
+                >
+                    Copy Profile Link
+                </Button>
             }
         </Box>
   )
