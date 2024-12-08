@@ -3,3 +3,14 @@
         margin: 5px !important;
     }
 }
+
+@media (max-width: 600px) {
+    .questionary-model {
+      .css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+        margin: 10px;
+      }
+      .css-scw9f0 {
+        padding: 10px;
+    }
+    }
+}
