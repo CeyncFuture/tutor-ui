@@ -99,7 +99,11 @@ export default function DropDownSelector({label, name, items, onChange, interest
                             sx={{
                                 display: 'flex',
                                 flexDirection: 'column',
-                                alignItems: ' flex-start'
+                                alignItems: ' flex-start',
+                                background: "#f5f5f5",
+                                marginBottom: "10px",
+                                padding: "5px",
+                                borderRadius: "5px"
                             }}
                         >
                           <div style={{
@@ -116,7 +120,7 @@ export default function DropDownSelector({label, name, items, onChange, interest
                                 marginLeft: 2
                               }}
                             />*/}
-                            <Typography>{item.name}</Typography>
+                            <Typography sx={{margin: "10px 0"}}>{item.name}</Typography>
                           </div>
 
                           <div style={{marginLeft: '10px'}}>

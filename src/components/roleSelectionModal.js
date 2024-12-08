@@ -76,8 +76,12 @@ const RoleSelector = () => {
   };
 
   const handleCloseModal = (questionnaire) => {
+
     setIsModalOpen(false);
-    updateUser({ ...questionnaire, role: "tutor" });
+
+    if(questionnaire){
+       updateUser({ ...questionnaire, role: "tutor" });
+    }
   };
 
   const updateUser = (payload) => {
@@ -108,9 +112,10 @@ const RoleSelector = () => {
           </Box>
         </Box>
         <Dialog
-          onClose={handleCloseModal}
+          onClose={() => handleCloseModal()}
           aria-labelledby="customized-dialog-title"
           open={isModalOpen}
+          className="questionary-model"
         >
           <Box
             style={{
@@ -123,7 +128,7 @@ const RoleSelector = () => {
               <CloseIcon style={{ color: "black" }} />
             </Button>
           </Box>
-          <DialogContent>
+          <DialogContent >
             <TutorQuestionnaire handleSubmit={handleCloseModal} />
           </DialogContent>
         </Dialog>
