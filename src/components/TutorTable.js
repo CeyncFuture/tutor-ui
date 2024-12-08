@@ -5,8 +5,6 @@ import {
 } from '@mui/material';
 import CustomTable from "./CustomTable";
 import {useDispatch, useSelector} from "react-redux";
-import Loader from "./circularProgress";
-import {useNavigate} from "react-router";
 import tutorActions from "../actions/tutor";
 import Chip from "@mui/material/Chip";
 import {get} from "lodash";
@@ -18,11 +16,10 @@ const headers = [
 ]
 
 const TutorTable = () => {
-    const [page, setPage] = useState(0);
-    const isFetching = useSelector((state) => state.tutor.isLoading);
+    const [page, setPage] = useState(1);
     const tutors = useSelector((state) => state.tutor.tutors);
+    const totalElements = useSelector((state) => state.tutor.totalElements);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     useEffect(() => {
         dispatch(tutorActions.getTutors(page));
@@ -55,9 +52,7 @@ const TutorTable = () => {
         )
     }) || []
 
-    return isFetching ?
-        <Loader/>:
-        <CustomTable headerRow={headerRow} dataRows={dataRows} page={page} setPage={setPage} totalElements={tutors?.length || 0}/>;
+    return  <CustomTable headerRow={headerRow} dataRows={dataRows} page={page} setPage={setPage} totalElements={totalElements}/>;
 };
 
 export default TutorTable;
