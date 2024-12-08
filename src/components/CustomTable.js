@@ -15,7 +15,7 @@ const CustomTable = ({headerRow, dataRows, page, setPage, totalElements}) => {
 
     return (
         <Box sx={{marginTop: "30px"}}>
-            <Table sx={{marginBottom: "30px", border: '1px solid #E0E0E0'}}>
+            <Table sx={{marginBottom: "30px", border: '1px solid #E0E0E0', width: '100%', overflowX: 'scroll'}}>
                 <TableHead sx={{backgroundColor: '#E0E0E0'}}>
                     <TableRow>
                         {headerRow}
