@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     TableCell,
     TableRow
 } from '@mui/material';
-import {tutors} from "../utils/constants";
 import CustomTable from "./CustomTable";
+import {useDispatch, useSelector} from "react-redux";
+import adminActions from "../actions/admin";
+import Loader from "./circularProgress";
+import {tutors} from "../utils/constants";
 
 const headers = [
     "Name",
@@ -14,6 +17,15 @@ const headers = [
 ]
 
 const TutorTable = () => {
+    const [page, setPage] = useState(1);
+    const admin = useSelector((state) => state.admin);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(adminActions.showLoader(true));
+        dispatch(adminActions.getTutors(page));
+    }, [page])
+
     const headerRow = headers.map((header, index) =>
         <TableCell key={index} align="center">{header}</TableCell>
     )
@@ -28,9 +40,11 @@ const TutorTable = () => {
             <TableCell align="center">{tutor.phoneNumber}</TableCell>
             <TableCell align="center">{tutor.interestAreas.join(",")}</TableCell>
         </TableRow>
-    )
+    ) || []
 
-    return <CustomTable headerRow={headerRow} dataRows={dataRows} totalElements={225}/>;
+    return admin.isLoading ?
+        <Loader/>:
+        <CustomTable headerRow={headerRow} dataRows={dataRows} page={page} setPage={setPage} totalElements={admin?.questions?.length || 0}/>;
 };
 
 export default TutorTable;
