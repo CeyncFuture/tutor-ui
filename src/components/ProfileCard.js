@@ -6,17 +6,21 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import Button from "@mui/material/Button";
 import {Edit} from "@mui/icons-material";
-import defaultProfilePic from "../assets/profilePictures/1.png"
 import {useSelector} from "react-redux";
-import {find, some, get} from "lodash";
+import { get } from "lodash";
 import {getSubjectById} from "../utils/utils";
+import Loader from "./circularProgress";
 
 export default function ProfileCard(props) {
-  const {data, isEditable, setIsEdit} = props;
+  const {data, isEditable, setIsEdit, isSharedProfile} = props;
   const subjects = useSelector((state) => state.common.subjects);
 
   let profile_picture = get(data, 'profile_picture', 1);
   profile_picture = profile_picture === null ? 1 : profile_picture;
+
+  if (get(data, 'isLoading')){
+    return <Loader/>;
+  }
 
   return (
         <Box
@@ -32,8 +36,8 @@ export default function ProfileCard(props) {
               boxShadow: '5px 5px 10px rgba(0, 0, 0, 0.5)'
             }}
         >
-            <Avatar 
-                alt={data?.first_name} 
+            <Avatar
+                alt={data?.first_name}
                 src={require(`../assets/profilePictures/${profile_picture}.png`)}
                 sx={{width: 250, height: 250}}/>
             <Typography component="h1" variant="h5" sx={{mt: 3}}>

@@ -5,18 +5,19 @@ import Container from '@mui/material/Container';
 import EditProfile from "./EditProfile";
 import ProfileCard from "./ProfileCard";
 import {useDispatch, useSelector} from "react-redux";
-import userActions from "../actions/user";
+import instructorActions from "../actions/instructor";
 
 export default function Profile({isEditable}) {
     const [isEdit, setIsEdit] = useState(false);
     const user = useSelector((state) => state.user);
+    const instructor = useSelector((state) => state.instructor);
     const dispatch = useDispatch();
 
     const {tutorId} = useParams();
 
     useEffect(() => {
         if (tutorId !== undefined) {
-            dispatch(userActions.getUserById(tutorId));
+            dispatch(instructorActions.getInstructorById(tutorId));
         }
     }, []);
 
@@ -27,9 +28,10 @@ export default function Profile({isEditable}) {
                     <EditProfile setIsEdit={setIsEdit} user={user}/>
                     :
                     <ProfileCard
-                        data={user}
+                        data={tutorId !== undefined ? instructor : user}
                         isEditable={isEditable}
                         setIsEdit={setIsEdit}
+                        isSharedProfile={tutorId !== undefined}
                     />
             }
         </Container>
