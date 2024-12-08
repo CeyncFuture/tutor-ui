@@ -8,6 +8,9 @@ import {useDispatch, useSelector} from "react-redux";
 import questionActions from "../actions/question";
 import Loader from "./circularProgress";
 import {GET_QUESTIONS_END} from "../actions/constants/question";
+import Button from "@mui/material/Button";
+import { Visibility} from "@mui/icons-material";
+import {get} from "lodash";
 
 const headers = [
     "Question",
@@ -36,12 +39,22 @@ const QuestionTable = () => {
             key={index}
             sx={{'&:last-child td, &:last-child th': {border: 0}}}
         >
-            <TableCell align="center">{question?.question}</TableCell>
+            <TableCell>{question?.question}</TableCell>
             <TableCell align="center">{question?.phone_number}</TableCell>
             <TableCell align="center">
-                <a href={question?.question_attachments[0].file_path}>
-                    {question?.question_attachments[0].file_path}
-                </a>
+                <Button
+                    startIcon={<Visibility/>}
+                    variant="outlined"
+                    onClick={() => {
+                        window.open(
+                            get(question, "question_attachments[0].file_path"),
+                            "_blank",
+                            "noopener,noreferrer"
+                        );
+                    }}
+                >
+                    View
+                </Button>
             </TableCell>
         </TableRow>
     ) || []
