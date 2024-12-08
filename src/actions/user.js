@@ -97,36 +97,6 @@ const userActions = {
         }
       );
     }
-  },
-  getUserById(userId) {
-    return (dispatch) => {
-
-      return fetch(`/user/${userId}`)
-        .then((response) => {
-            if (response.data) {
-              dispatch(userActions.updateUserProfileSuccess(response));
-            } else {
-              // dispatch(userActions.updateUserProfileFailure(response.error));
-              createNotification("error",get(response, 'error.response.data.message', 'An unexpected error occurred.'));
-            }
-          }
-        );
-    }
-  },
-  getUserById(userId) {
-    return (dispatch) => {
-
-      return fetch(`/user/${userId}`)
-        .then((response) => {
-          if (response.data) {
-            dispatch(userActions.updateUserProfileSuccess(response));
-          } else {
-            // dispatch(userActions.updateUserProfileFailure(response.error));
-            createNotification("error",get(response, 'error.response.data.message', 'An unexpected error occurred.'));
-          }
-        }
-      );
-    }
   }
 };
 
