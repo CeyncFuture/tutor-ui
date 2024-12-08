@@ -1,10 +1,12 @@
 import {combineReducers} from "redux";
 import user from './user';
 import common from "./common";
-import admin from "./admin";
+import tutor from "./tutor";
+import question from "./question";
 
 export default combineReducers({
   user,
   common,
-  admin
+  tutor,
+  question
 });
