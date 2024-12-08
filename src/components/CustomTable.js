@@ -25,11 +25,14 @@ const CustomTable = ({headerRow, dataRows, page, setPage, totalElements}) => {
                     {dataRows}
                 </TableBody>
             </Table>
-            <PaginationBar
-                totalElements={totalElements}
-                page={page}
-                onChange={handleChange}
-            />
+            {
+                totalElements > 20 &&
+                <PaginationBar
+                    totalElements={totalElements}
+                    page={page}
+                    onChange={handleChange}
+                />
+            }
         </Box>
     );
 };

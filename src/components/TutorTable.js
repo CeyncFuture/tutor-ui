@@ -11,9 +11,8 @@ import tutorActions from "../actions/tutor";
 
 const headers = [
     "Name",
-    "Email Address",
     "Phone Number",
-    "Interest Areas"
+    "Work Hours"
 ]
 
 const TutorTable = () => {
@@ -36,10 +35,9 @@ const TutorTable = () => {
             key={index}
             sx={{'&:last-child td, &:last-child th': {border: 0}}}
         >
-            <TableCell align="center">{`${tutor.firstName} ${tutor.lastName}`}</TableCell>
-            <TableCell align="center">{tutor.email}</TableCell>
-            <TableCell align="center">{tutor.phoneNumber}</TableCell>
-            <TableCell align="center">{tutor.interestAreas.join(",")}</TableCell>
+            <TableCell align="center">{`${tutor.user.first_name} ${tutor.user.last_name}`}</TableCell>
+            <TableCell align="center">{tutor.user.phone_number}</TableCell>
+            <TableCell align="center">{tutor.work_hours}</TableCell>
         </TableRow>
     ) || []
 
