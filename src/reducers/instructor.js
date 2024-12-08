@@ -1,5 +1,6 @@
 import {createReducer} from '../utils/utils';
-import {SHOW_LOADER, SIGN_OUT, UPDATE_PROFILE, VERIFY_PROFILE} from '../actions/constants/user';
+import {SHOW_LOADER} from '../actions/constants/user';
+import {UPDATE_INSTRUCTOR_PROFILE} from '../actions/constants/instructor';
 
 const instructor = {
   first_name: '',
@@ -10,7 +11,7 @@ const instructor = {
 };
 
 const states = {
-  [UPDATE_PROFILE]: (state, payload) => {
+  [UPDATE_INSTRUCTOR_PROFILE]: (state, payload) => {
     const newState = {
       ...payload,
       isLoading: false

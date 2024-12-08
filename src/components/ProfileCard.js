@@ -8,7 +8,7 @@ import Button from "@mui/material/Button";
 import {Edit} from "@mui/icons-material";
 import {useSelector} from "react-redux";
 import { get } from "lodash";
-import {getSubjectById} from "../utils/utils";
+import {createNotification, getSubjectById} from "../utils/utils";
 import Loader from "./circularProgress";
 
 export default function ProfileCard(props) {
@@ -18,8 +18,26 @@ export default function ProfileCard(props) {
   let profile_picture = get(data, 'profile_picture', 1);
   profile_picture = profile_picture === null ? 1 : profile_picture;
 
+    const sharableLink = `${window.location.origin}/tutor/${get(data, 'sharable_id')}`;
+
   if (get(data, 'isLoading')){
     return <Loader/>;
+  }
+
+  const handleCopy = () => {
+      const text = document.getElementById("profileLink").textContent;
+
+      const tempTextarea = document.createElement("textarea");
+      tempTextarea.value = text;
+
+      document.body.appendChild(tempTextarea);
+
+      tempTextarea.select();
+      document.execCommand("copy");
+
+      document.body.removeChild(tempTextarea);
+
+      createNotification("success", "Link copied to clipboard!");
   }
 
   return (
@@ -70,6 +88,21 @@ export default function ProfileCard(props) {
                     Edit Profile
                 </Button>
             }
+            {!isSharedProfile &&
+                <>
+                    <Typography id="profileLink" sx={{color: 'rgb(80, 87, 89)', fontSize: '14px'}}>
+                        {sharableLink}
+                    </Typography>
+                    <Button
+                        variant="outlined"
+                        sx={{mt: 3, mb: 2}}
+                        onClick={handleCopy}
+                    >
+                        Copy Profile Link
+                    </Button>
+                </>
+            }
         </Box>
-    );
+  )
+      ;
 }

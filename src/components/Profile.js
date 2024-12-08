@@ -6,6 +6,7 @@ import EditProfile from "./EditProfile";
 import ProfileCard from "./ProfileCard";
 import {useDispatch, useSelector} from "react-redux";
 import instructorActions from "../actions/instructor";
+import commonActions from "../actions/common";
 
 export default function Profile({isEditable}) {
     const [isEdit, setIsEdit] = useState(false);
@@ -18,6 +19,7 @@ export default function Profile({isEditable}) {
     useEffect(() => {
         if (tutorId !== undefined) {
             dispatch(instructorActions.getInstructorById(tutorId));
+            dispatch(commonActions.getSubjects());
         }
     }, []);
 
