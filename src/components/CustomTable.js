@@ -26,7 +26,7 @@ const CustomTable = ({headerRow, dataRows, page, setPage, totalElements}) => {
                 </TableBody>
             </Table>
             {
-                totalElements > 20 &&
+                totalElements > 10 &&
                 <PaginationBar
                     totalElements={totalElements}
                     page={page}

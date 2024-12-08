@@ -8,7 +8,7 @@ const PaginationBar = ({totalElements, page, onChange}) => {
             <Pagination
                 page={page}
                 onChange={onChange}
-                count={Math.ceil(totalElements / 20)}
+                count={Math.ceil(totalElements / 10)}
                 variant="outlined"
                 shape="rounded"
             />

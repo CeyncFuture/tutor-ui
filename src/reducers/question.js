@@ -3,21 +3,16 @@ import {GET_QUESTIONS_START, GET_QUESTIONS_SUCCESS, GET_QUESTIONS_FAILURE, GET_Q
 
 const initialState = {
     questions: [],
-    isLoading: false,
+    totalElements: 0,
     error: null
 };
 
 const reducers = {
-    [GET_QUESTIONS_START]: (state, payload) => {
-        return {
-            ...state,
-            isLoading: true
-        };
-    },
     [GET_QUESTIONS_SUCCESS]: (state, payload) => {
         return {
             ...state,
-            questions: payload
+            questions: payload.questions,
+            totalElements: payload.totalElements
         };
     },
     [GET_QUESTIONS_FAILURE]: (state, payload) => {
@@ -25,13 +20,7 @@ const reducers = {
             ...state,
             error: payload
         };
-    },
-    [GET_QUESTIONS_END]: (state) => {
-        return {
-            ...state,
-            isLoading:  false
-        };
-    },
+    }
 };
 
 export default createReducer(initialState, reducers);

@@ -3,32 +3,22 @@ import {GET_TUTORS_START, GET_TUTORS_SUCCESS, GET_TUTORS_FAILURE, GET_TUTORS_END
 
 const initialState = {
     tutors: [],
-    isLoading: false
+    totalElements: 0,
+    error: null
 };
 
 const reducers = {
-    [GET_TUTORS_START]: (state) => {
-        return {
-            ...state,
-            isLoading: true
-        }
-    },
     [GET_TUTORS_SUCCESS]: (state, payload) => {
         return {
             ...state,
-            tutors: payload
+            tutors: payload.tutors,
+            totalElements: payload.totalElements
         };
     },
     [GET_TUTORS_FAILURE]: (state, payload) => {
         return {
             ...state,
             error: payload
-        };
-    },
-    [GET_TUTORS_END]: (state) => {
-        return {
-            ...state,
-            isLoading: false
         };
     }
 };

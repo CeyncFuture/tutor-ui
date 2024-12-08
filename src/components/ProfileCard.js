@@ -68,7 +68,10 @@ export default function ProfileCard(props) {
                     {data?.phone_number}
                 </Typography>
             }
-            <Stack sx={{mt: 3}} direction="row" flexWrap="wrap" justifyContent={"center"} spacing={1}>
+            <Typography sx={{color: 'rgb(80, 87, 89)', fontSize: '14px', mt: 3, padding: "0px 10px"}}>
+                {data?.description}
+            </Typography>
+            <Stack sx={{mt: 2}} direction="row" flexWrap="wrap" justifyContent={"center"} spacing={1}>
                 {
                     data?.interests?.map((subject, index) => {
                       const subjectDetails = getSubjectById(subjects.categories, subject);

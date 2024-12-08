@@ -6,8 +6,6 @@ import {
 import CustomTable from "./CustomTable";
 import {useDispatch, useSelector} from "react-redux";
 import questionActions from "../actions/question";
-import Loader from "./circularProgress";
-import {GET_QUESTIONS_END} from "../actions/constants/question";
 import Button from "@mui/material/Button";
 import { Visibility} from "@mui/icons-material";
 import {get} from "lodash";
@@ -19,14 +17,12 @@ const headers = [
 ]
 
 const QuestionTable = () => {
-    const [page, setPage] = useState(0);
-    const isFetching = useSelector((state) => state.question.isLoading);
+    const [page, setPage] = useState(1);
     const questions = useSelector((state) => state.question.questions);
-    const error = useSelector((state) => state.question.error);
+    const totalElements = useSelector((state) => state.question.totalElements);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch({type: GET_QUESTIONS_END})
         dispatch(questionActions.getQuestions(page));
     }, [page])
 
@@ -59,9 +55,7 @@ const QuestionTable = () => {
         </TableRow>
     ) || []
 
-    return isFetching ?
-        <Loader/> :
-        <CustomTable headerRow={headerRow} dataRows={dataRows} page={page} setPage={setPage} totalElements={questions?.length || 0}/>;
+    return <CustomTable headerRow={headerRow} dataRows={dataRows} page={page} setPage={setPage} totalElements={totalElements}/>;
 };
 
 export default QuestionTable;

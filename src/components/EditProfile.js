@@ -117,6 +117,7 @@ export default function EditProfile({setIsEdit, user}) {
                         fullWidth
                         multiline
                         rows={4}
+                        inputProps={{ maxLength: 200 }}
                         value={userData.description}
                         autoFocus
                         onChange={onChange}
